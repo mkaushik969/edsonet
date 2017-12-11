@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 	try{
   	  img=__basedir+'/public/images/u'+n+'.jpg';
   	  Image.mv(img);
-  	  img='/images/u'+n+'.jpg';
+  	  img='images/u'+n+'.jpg';
 	}catch(err){
 		img='';
 		console.log('err');
