@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
 //	n='55';
 	var qimg,o1img,o2img,o3img,o4img;
 	try{
-  	  qimg='/node_projects/myapp/public/images/q'+n+'.jpg';
+  	  qimg=__basedir+'/public/images/q'+n+'.jpg';
   	  QImage.mv(qimg);
   	  qimg='/images/q'+n+'.jpg';
 	}catch(err){
@@ -33,7 +33,7 @@ router.post('/', function(req, res) {
 		console.log('err');
 	}
 	try{
-  	  o1img='/node_projects/myapp/public/images/'+'opt1'+n+'.jpg';
+  	  o1img=__basedir+'/public/images/'+'opt1'+n+'.jpg';
   	  OImage1.mv(o1img);
   	  o1img='/images/'+'opt1'+n+'.jpg';
 	}catch(err){
@@ -41,7 +41,7 @@ router.post('/', function(req, res) {
 		console.log('err');
 	}
 	try{
-  	  o2img='/node_projects/myapp/public/images/'+'opt2'+n+'.jpg';
+  	  o2img=__basedir+'/public/images/'+'opt2'+n+'.jpg';
   	  OImage2.mv(o2img);
   	  o2img='/images/'+'opt2'+n+'.jpg';
 	}catch(err){
@@ -49,7 +49,7 @@ router.post('/', function(req, res) {
 		console.log('err');
 	}
 	try{
-  	  o3img='/node_projects/myapp/public/images/'+'opt3'+n+'.jpg';
+  	  o3img=__basedir+'/public/images/'+'opt3'+n+'.jpg';
   	  OImage3.mv(o3img);
   	  o3img='/images/'+'opt3'+n+'.jpg';
 	}catch(err){
@@ -57,7 +57,7 @@ router.post('/', function(req, res) {
 		console.log('err');
 	}
 	try{
-  	  o4img='/node_projects/myapp/public/images/'+'opt4'+n+'.jpg';
+  	  o4img=__basedir+'/public/images/'+'opt4'+n+'.jpg';
   	  OImage4.mv(o4img);
   	  o4img='/images/'+'opt4'+n+'.jpg';
 	}catch(err){

@@ -33,7 +33,7 @@ router.post('/', function(req, res) {
 	var n = d.getTime();
 
 	try{
-  	  pimg='/node_projects/myapp/public/images/p'+n+'.jpg';
+  	  pimg=__basedir+'/public/images/p'+n+'.jpg';
   	  PImage.mv(pimg);
   	  pimg='/images/p'+n+'.jpg';
 	}catch(err){
