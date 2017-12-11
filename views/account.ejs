@@ -33,8 +33,10 @@
     var email= document.forms["f2"]["email"].value;
 
     $.ajax({  
-        type: "POST",  
-        url: "http://13.127.31.254:3000/login",  
+        type: "POST",
+        crossDomain: true,
+        beforeSend: setHeader,
+        url: "http://localhost:3000/login",  
         data: {'email': email,'pass': pass},  
         success: function(dataString) {        
 //            alert("OKKKKK");  

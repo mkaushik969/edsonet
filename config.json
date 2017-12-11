@@ -1,5 +1,5 @@
 {
-  
+  "server":"13.127.31.254",  
   "neo4j": {
     "bolt": "bolt://hobby-iooilclecffdgbkeagcidial.dbs.graphenedb.com:24786",
     "auth": {
