@@ -109,7 +109,7 @@ router.post('/', function(req, res) {
 //	  const singleRecord = result.records[0];
 //	  const node = singleRecord.get(0);
 //	 res.sendFile(path.join(__dirname, '../views', 'account.ejs'));
-	  res.status(200).json({"response" :"success"});
+	  res.status(200).json({"response" :"success",result});
 //	res.redirect('/account');
 	  driver.close();
 	})
