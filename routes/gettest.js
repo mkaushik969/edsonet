@@ -12,9 +12,9 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (q:Question) WITH q, rand() AS number RETURN q ORDER BY number LIMIT 10',
+		'MATCH (q:Question{tag:$tag}) return q',
 	  {
-	  	// email: req.body.email,
+	  	 tag: req.body.tagid
 	  	// password: req.body.pass,
 	  }
 	);

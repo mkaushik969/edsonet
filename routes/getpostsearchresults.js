@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (p:Post)<-[:POSTS]-(u:User) where p.msg CONTAINS $txt return p,u',
+		'MATCH (p:Post)<-[:POSTS]-(u:User) where toLower(p.msg) CONTAINS toLower($txt) return p,u',
 	  {
 	  	txt: req.body.txt,
 	  }

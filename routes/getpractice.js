@@ -12,9 +12,9 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (q:Question) WITH q, rand() AS number RETURN q ORDER BY number LIMIT 10',
+		'MATCH (q:Question{tag:$tag}) RETURN q',
 	  {
-	  	// email: req.body.email,
+	  	 tag: req.body.tagid
 	  	// password: req.body.pass,
 	  }
 	);
@@ -23,19 +23,20 @@ router.post('/', function(req, res, next) {
 	  session.close();
 	console.log("Success");
 
-	   const singleRecord = result.records[0];
+//	   const singleRecord = result.records[0];
 
 	   var jsonArr = { data:[] };
+	   var page=parseInt(req.body.page);
 
-		for (var i = 0; i < 10; i++) {
+		for (var i = (page-1)*10; i < ((page-1)*10)+10; i++) {
 		    jsonArr.data.push(result.records[i].get(0).properties);
 		}
 
-
+		var ttl=result.records.length/10;
 //	   const node = singleRecord.get(0);
 //	 log.console(singleRecord);
 //	 log.console(node);
-	  res.status(200).json({response:"success",data:jsonArr.data,total:'4'});
+	  res.status(200).json({response:"success",data:jsonArr.data,total:ttl});
 //	  res.status(200).json({"response" :"success"});
 
 	  driver.close();
