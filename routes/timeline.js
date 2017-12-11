@@ -8,6 +8,7 @@ var router = express.Router();
 router.use(fileUpload());
 
 router.get('/', function(req, res, next) {
+
 	if(!req.session.email)
 	  res.redirect('home');
 

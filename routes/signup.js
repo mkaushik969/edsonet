@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
 	var img;
 
 	try{
-  	  img='/node_projects/myapp/public/images/u'+n+'.jpg';
+  	  img=__basedir+'/public/images/u'+n+'.jpg';
   	  Image.mv(img);
   	  img='/images/u'+n+'.jpg';
 	}catch(err){
@@ -52,14 +52,14 @@ router.post('/', function(req, res, next) {
 	  req.session.email=req.body.email;
 
 //	  res.status(200).json({"response" :"success"});
-	res.render("/timeline");
+	res.redirect("/timeline");
 
 	  driver.close();
 	})
 	.catch((err) => {
 	console.log("failure");
 //		res.status(200).json({"response" : "failure"});
-	res.render("/createaccount",{response:'failure'});
+	res.redirect("/createaccount");
 	})
 });
 
