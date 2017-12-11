@@ -33,14 +33,14 @@ $(document).ready(function(){
     $("#selct1").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value"); 
-            if(optionValue=="mains"){ 
+            if(optionValue==2){ 
                 $("#gate").hide();           
                 $("#mains").show();
               
             }
 
             
-            if(optionValue=="gate"){
+            if(optionValue==1){
               $("#mains").hide();
                $("#gate").show();
               
@@ -58,12 +58,12 @@ $(document).ready(function(){
     $("#selct11").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue1 = $(this).attr("value");
-            if(optionValue1=="cs")
+            if(optionValue1==1)
             {
               $("#civil").hide();
               $("#cs").show();
             }
-            else if(optionValue1=="civil")
+            else if(optionValue1==2)
             {
               $("#cs").hide();
               $("#civil").show();
@@ -79,20 +79,20 @@ $(document).ready(function(){
     $("#selct111").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue1 = $(this).attr("value");
-            if(optionValue1=="phy")
+            if(optionValue1==3)
             {
               $("#chem").hide();
               $("#maths").hide();
               $("#phy").show();
               
             }
-            else if(optionValue1=="chem")
+            else if(optionValue1==2)
             {
               $("#chem").show();
               $("#maths").hide();
               $("#phy").hide();
             }
-            else  if(optionValue1=="maths")
+            else  if(optionValue1==1)
             {
                 $("#chem").hide();
                 $("#phy").hide();
@@ -245,7 +245,7 @@ $(document).ready(function(){
                     <div class="form-group">
                         <label for="selct1" class="control-label col-sm-3">Class :</label>
                         <div class="col-sm-8">
-                        <select id="selct1" class="form-control" name="class">
+                        <select id="selct1" class="form-control" name="clss">
                         <option>Select</option>
                         <option value="1">Gate</option>
                         <option value="2">JEE Mains</option>
