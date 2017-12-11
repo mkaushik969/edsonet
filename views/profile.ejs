@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EDSONET-USER PROFILE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" type="text/css">
+    <script src="lib/jquery-3.2.0.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-switch/css/bootstrap-switch.min.css">
+    <script src="lib/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../twemoji.maxcdn.com/twemoji.min.js"></script>
+    <script src="js/lazy-load.min.js"></script>
+    <script src="js/socialyte.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+      <style>
+   
+   input[type=text] {
+
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('search.png');
+    background-repeat: repeat-y;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 8px 20px 8px 40px;
+   
+}
+    </style>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var obj;
+      function drawChart() {
+    var myemail = '<%=email %>' ;
+
+        $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprogress",  
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('progress:', dataString); 
+                if(dataString.response=="success"){
+                 //   top.location.href = '/portal';
+                 //obj1=dataString.sub;
+                 obj=dataString.monthly;
+                 var i,nov=0,dec=0,jan=0 ,feb=0,mar=0,apr=0,may=0,jun=0,jul=0,aug=0,sep=0,oct=0;
+                 //alert(obj.length);
+                 for(i=0;i<obj.length;i++)
+                 {
+                    if(obj[i][1]==1)
+                    {
+                        jan=obj[i][0].low;
+                    }
+                    if(obj[i][1]==2)
+                    {
+                        feb=obj[i][0].low;
+                    }
+                    if(obj[i][1]==3)
+                    {
+                        mar=obj[i][0].low;
+                    }
+                    if(obj[i][1]==4)
+                    {
+                        apr=obj[i][0].low;
+                    }
+                    if(obj[i][1]==5)
+                    {
+                        may=obj[i][0].low;
+                    }
+                    if(obj[i][1]==6)
+                    {
+                        jun=obj[i][0].low;
+                    }
+                    if(obj[i][1]==7)
+                    {
+                        jul=obj[i][0].low;
+                    }
+                    if(obj[i][1]==8)
+                    {
+                        aug=obj[i][0].low;
+                    }
+                    if(obj[i][1]==9)
+                    {
+                        sep=obj[i][0].low;
+                    }
+                    if(obj[i][1]==10)
+                    {
+                        oct=obj[i][0].low;
+                    }
+                    if(obj[i][1]==11)
+                    {
+                        nov=obj[i][0].low;
+                    }
+                    if(obj[i][1]==12)
+                    {
+                        dec=obj[i][0].low;
+                    }
+                 }
+
+                //
+                // alert(nov);
+        var data = google.visualization.arrayToDataTable([
+          ['Months', 'Months'],
+          ['Jan',  jan],
+          ['Feb',  feb],
+          ['Mar',  mar],
+          ['Apr',  apr],
+                  ['May', may],
+                          ['Jun',  jun],
+                                  ['Jul',  jul],
+                                ['Aug',  aug],
+                                 ['Sep',  sep],
+                                         ['Oct',  oct],
+                                    ['Nov',  nov],
+                                            ['Dec',  dec]
+                                           
+        ]);
+
+        var options = {
+          title: 'Monthly Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+                else{
+                    alert("User Already Registered");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+    var myemail = '<%=email %>' ;
+
+        $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprogress",  
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                   // top.location.href = '/portal';
+                   var obj1=dataString.sub;
+                   var cn=0,db=0,os=0,coa=0,mat=0,ds=0,pro=0,com=0,ea=0;
+                   var i;
+                   for(i=0;i<obj1.length;i++)
+                   {
+                    if(obj1[i][0]==1)
+                    {
+                        cn=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==2)
+                    {
+                        ds=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==3)
+                    {
+                        mat=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==4)
+                    {
+                        coa=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==5)
+                    {
+                        os=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==6)
+                    {
+                        db=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==7)
+                    {
+                        pro=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==8)
+                    {
+                        com=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==9)
+                    {
+                        ea=obj1[i][2].low;
+                    }
+                   }
+
+
+                    var data = google.visualization.arrayToDataTable([
+          ['Subject', 'Attempted Questions'],
+          ['Computer Networks',     cn],
+          ['DBMS',   db],
+          ['COA',  coa],
+          ['Maths', mat],
+          ['Data Structures',ds],
+          ['Operating Systems',os],
+          ['Programming',pro],
+          ['Compiler',com],
+          ['English and Aptitude',ea]
+        ]);
+
+        var options = {
+          title: 'Subjectwise Progress'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+
+                }
+                else{
+                    alert("User Already Registered");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+
+       
+      }
+    </script>
+
+</head>
+
+<body id="personal" onload="getprofile()">
+
+    <script type="text/javascript">
+
+var email22;
+function getprofile()
+{
+    var myemail = '<%=email %>' ;
+
+     $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprofile",
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+            if(dataString.response=="success"){
+            var obj=dataString.data;
+            
+            email22=obj.email;
+
+            document.getElementById("user").innerHTML=obj.firstname+" "+obj.lastname;
+            document.getElementById("city").textContent=obj.city;
+            document.getElementById("email").textContent=obj.email;
+            document.getElementById("phno").textContent=obj.phoneno;     
+            document.getElementById("fname").textContent=obj.firstname;
+            var img2=new Image();
+           if(obj.image)
+                        {
+                        img2.src=obj.image;
+                        img2.setAttribute("class","img-circle img-user");
+                        //img2.setAttribute("style","height:20px;width:15px;");
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("uimg").appendChild(img2);
+                        }
+                        else
+                        {
+                        img2.src="img/user.jpg";
+                        img2.setAttribute("class","img-circle img-user");
+                       // img2.setAttribute("style","height:20px;width:15px;");
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("uimg").appendChild(img2);
+                        }
+                getfollowstatus();
+              }
+           else{
+           alert("Error1");
+          }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+
+function getfollowstatus() {
+    var myemail = '<%=email %>' ;
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/isfollowing",
+        data: {email:email22},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('followstatus', dataString); 
+            if(dataString.response=="success"){
+
+            var follow=dataString.follow;
+
+            if(follow==1)
+            {
+                document.getElementById("follow1").value="FOLLOWING";
+                document.getElementById("follow1").style.backgroundColor="green";
+                document.getElementById("follow1").style.color="white";
+            }
+            else if(follow==0)
+            {
+                document.getElementById("follow1").value="FOLLOW";
+            }
+            else if(follow==-1)
+            {
+                $("#follow1").hide();
+            }
+}
+
+
+
+/*            var y=document.getElementById("follow1").value;
+            if(y=="FOLLOW")
+            {
+                document.getElementById("follow1").value="FOLLOWING";
+                document.getElementById("follow1").style.background-color="green";
+              }
+              if(y=="FOLLOWING")
+              {
+                document.getElementById("follow1").value="FOLLOW";
+              }
+            }
+*/                      
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+
+}
+
+function followuser()
+{
+    var myemail = '<%=email %>' ;
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/followuser",
+        data: {email2:email22},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('followuser:', dataString); 
+            if(dataString.response=="success"){
+            var y=document.getElementById("follow1").value;
+            if(y=="FOLLOW")
+            {
+                document.getElementById("follow1").value="FOLLOWING";
+               // document.getElementById("follow1").style.backgroundColor="green";
+                //document.getElementById("follow1").style.color="white";
+              }
+              if(y=="FOLLOWING")
+              {
+                document.getElementById("follow1").value="FOLLOW";
+              }
+            }
+                      
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+
+    </script>
+    <!--Header with Nav -->
+    <header class="text-right">
+        
+        <form class="text-left search" method="POST" action="/searchresults">
+           <input id="search" name="search" type="text" placeholder="Search..">
+        </form>
+
+        <div class="menu-icon">
+            <div class="dropdown">
+                <span class="dropdown-toggle" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="hidden-xs hidden-sm" onclick="logout()">Logout</span></span> <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+                </span>
+                
+            </div>
+        </div>
+      
+        <div class="second-icon menu-icon">
+            <span><a href="/profile" title="Profile"><span class="hidden-xs hidden-sm">Profile</span> <i class="fa fa-user" aria-hidden="true"></i></a>
+            </span>
+        </div>
+       
+    </header>
+
+    <!--Left Sidebar with info Profile -->
+    <div class="sidebar-nav">
+        <a title="Profile">
+            <div id="uimg"></div>
+        </a>
+        <h2 class="text-center hidden-xs"><div id="fname"></div></h2>
+        <br>
+        <div id="follower" align="center"><b><input type="button" onclick="followuser()" name="FOLLOW" value="FOLLOW" class="btn btn-default" id="follow1"></b></div>
+        
+    </div>
+
+    <div class="content-posts profile-content">
+        <div class="banner-profile">
+        </div>
+        <!-- Tab Panel -->
+        <ul class="nav nav-tabs" role="tablist">
+          
+            <li class="active"><a href="#profile" role="tab" id="profileTab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Profile</a></li>
+
+           <!-- <li><a href="#posts" role="tab" id="postsTab" data-toggle="tab" aria-controls="posts" aria-expanded="true">Last posts</a></li> -->
+            
+        </ul>
+
+        <!--Start Tab Content-->
+        <div class="tab-content">
+
+
+            <!--Start Tab Profile-->
+            <div class="tab-pane fade active in" role="tabpanel" id="profile" aria-labelledby="profileTab">
+                <div class="container-fluid container-posts">
+                    <div class="card-post">
+                    
+                        <ul class="profile-data">
+                        
+                            <div class="col-sm-12">
+                            <li><b><div class="col-sm-3" align="right">Username :</div></b> <div id="user" align="left"></div></li><br>
+                            </div>
+                            <div class="col-sm-12">
+                            <li><b><div class="col-sm-3" align="right">Email :</div></b> <div id="email" align="left"></div></li><br>
+                            </div>
+                            <div class="col-sm-12">
+                            <li><b><div class="col-sm-3" align="right">Contact :</div></b> <div id="phno" align="left"></div></li><br>
+                            </div>                            
+                            <div class="col-sm-12">
+                            <li><b><div class="col-sm-3" align="right">City :</div></b> <div id="city" align="left"></div></li><br>
+                            </div>
+                            <div class="col-sm-12">
+                           <div class="col-sm-6">
+                        <div id="curve_chart" style="width: 450px; height: 400px"></div>
+                        </div>
+						<div class="col-sm-6">
+                        <div id="piechart" style="width:500px; height: 450px;"></div>
+                         </div>
+                         </div>
+                        </ul>
+                        <p><a href="#" title="edit profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></p>
+                    </div>
+                </div>
+            </div><!-- end tab Profile -->
+
+
+
+            <!-- Tab Posts 
+            <div  class="tab-pane fade" role="tabpanel" id="posts" aria-labelledby="postsTab">
+                <div id="posts-container" class="container-fluid container-posts">
+
+                    <div class="card-post">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-2">
+                                <a href="personal-profile.html" title="Profile">
+                                    <img src="img/user.jpg" alt="User name" class="img-circle img-user">
+                                </a>
+                            </div>
+                            <div class="col-xs-9 col-sm-10 info-user">
+                                <h3><a href="personal-profile.html" title="Profile">My User</a></h3>
+                                <p><i>2h</i></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2 data-post">
+                                <p>Lorem Ipsum Dolor si amet</p>
+                                <div class="reaction">
+                                    &#x2764; 156 &#x1F603; 54
+                                </div>
+                                <div class="comments">
+                                    <div class="more-comments">View more comments</div>
+                                    <ul>
+                                        <li><b>User1</b> Lorem Ipsum Dolor si amet</li>
+                                        <li><b>User2</b> Lorem Ipsum Dolor si amet &#x1F602;</li>
+                                    </ul>
+                                    <form>
+                                        <input type="text" class="form-control" placeholder="Add a comment">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-post">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-2">
+                                <a href="personal-profile.html" title="Profile">
+                                    <img src="img/user.jpg" alt="My User" class="img-circle img-user">
+                                </a>
+                            </div>
+                            <div class="col-xs-9 col-sm-10 info-user">
+                                <h3><a href="personal-profile.html" title="Profile">My User</a></h3>
+                                <p><i>2h</i></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-sm-8 col-sm-offset-2 data-post">
+                                <p>Lorem Ipsum Dolor si amet</p>
+                                <img src="img/post.jpg" alt="image post" class="img-post">
+                                <div class="reaction">
+                                    &#x2764; 1234 &#x1F603; 54
+                                </div>
+                                <div class="comments">
+                                    <div class="more-comments">View more comments</div>
+                                    <ul>
+                                        <li><b>User1</b> Lorem Ipsum Dolor si amet</li>
+                                        <li><b>User2</b> Lorem Ipsum Dolor si amet &#x1F602;</li>
+                                    </ul>
+                                    <form>
+                                        <input type="text" class="form-control" placeholder="Add a comment">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-post">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-2">
+                                <a href="personal-profile.html" title="Profile">
+                                    <img src="img/user.jpg" alt="User name" class="img-circle img-user">
+                                </a>
+                            </div>
+                            <div class="col-xs-9 col-sm-10 info-user">
+                                <h3><a href="personal-profile.html" title="Profile">My User</a></h3>
+                                <p><i>2h</i></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2 data-post">
+                                <p>Lorem Ipsum Dolor si amet</p>
+                                <video controls>
+                                  <source src="img/post-video.mp4" type="video/mp4">
+                                  Your browser does not support the video tag.
+                                </video>
+                                <div class="reaction">
+                                    &#x2764; 1234 &#x1F603; 54
+                                </div>
+                                <div class="comments">
+                                    <div class="more-comments">View more comments</div>
+                                    <ul>
+                                        <li><b>User1</b> Lorem Ipsum Dolor si amet</li>
+                                        <li><b>User2</b> Lorem Ipsum Dolor si amet &#x1F602;</li>
+                                    </ul>
+                                    <form>
+                                        <input type="text" class="form-control" placeholder="Add a comment">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="loading">
+                    <img src="img/load.gif" alt="loader">
+                </div>
+            </div> end Tab Posts -->
+
+        </div><!-- Close Tab Content-->
+
+    </div><!--Close content posts-->
+
+    <!-- Modal container for settings
+    <div id="settingsmodal" class="modal fade text-center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>  
+    </div>-->
+
+</body>
+</html>

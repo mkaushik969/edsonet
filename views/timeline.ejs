@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDSONET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" type="text/css">
+    <script src="lib/jquery-3.2.0.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-switch/css/bootstrap-switch.min.css">
+    <script src="lib/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="js/lazy-load.min.js"></script>
+    <script src="js/socialyte.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <style>
+   
+   input[type=text] {
+
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/img/search.png');
+    background-repeat: repeat-y;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 7px 20px 7px 40px;
+   
+}
+    </style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var obj,obj1;
+      function drawChart() {
+var myemail = '<%=email %>' ;
+
+        $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprogress",  
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('progress:', dataString); 
+                if(dataString.response=="success"){
+                 obj1=dataString.sub;
+                 obj=dataString.monthly;
+                 var i,nov=0,dec=0,jan=0 ,feb=0,mar=0,apr=0,may=0,jun=0,jul=0,aug=0,sep=0,oct=0;
+                 for(i=0;i<obj.length;i++)
+                 {
+                    if(obj[i][1]==1)
+                    {
+                        jan=obj[i][0].low;
+                    }
+                    if(obj[i][1]==2)
+                    {
+                        feb=obj[i][0].low;
+                    }
+                    if(obj[i][1]==3)
+                    {
+                        mar=obj[i][0].low;
+                    }
+                    if(obj[i][1]==4)
+                    {
+                        apr=obj[i][0].low;
+                    }
+                    if(obj[i][1]==5)
+                    {
+                        may=obj[i][0].low;
+                    }
+                    if(obj[i][1]==6)
+                    {
+                        jun=obj[i][0].low;
+                    }
+                    if(obj[i][1]==7)
+                    {
+                        jul=obj[i][0].low;
+                    }
+                    if(obj[i][1]==8)
+                    {
+                        aug=obj[i][0].low;
+                    }
+                    if(obj[i][1]==9)
+                    {
+                        sep=obj[i][0].low;
+                    }
+                    if(obj[i][1]==10)
+                    {
+                        oct=obj[i][0].low;
+                    }
+                    if(obj[i][1]==11)
+                    {
+                        nov=obj[i][0].low;
+                    }
+                    if(obj[i][1]==12)
+                    {
+                        dec=obj[i][0].low;
+                    }
+                 }
+
+        var data = google.visualization.arrayToDataTable([
+          ['Months', 'Months'],
+          ['Jan',  jan],
+          ['Feb',  feb],
+          ['Mar',  mar],
+          ['Apr',  apr],
+                  ['May', may],
+                          ['Jun',  jun],
+                                  ['Jul',  jul],
+                                ['Aug',  aug],
+                                 ['Sep',  sep],
+                                         ['Oct',  oct],
+                                    ['Nov',  nov],
+                                            ['Dec',  dec]
+                                           
+        ]);
+
+        var options = {
+          title: 'Monthly Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+                else{
+                    alert("User Already Registered");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+    </script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+var myemail = '<%=email %>' ;
+        $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprogress",  
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                   // top.location.href = '/portal';
+                   var obj1=dataString.sub;
+                   var cn=0,db=0,os=0,coa=0,mat=0,ds=0,pro=0,com=0,ea=0;
+                   var i;
+                   for(i=0;i<obj1.length;i++)
+                   {
+                    if(obj1[i][0]==1)
+                    {
+                        cn=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==2)
+                    {
+                        ds=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==3)
+                    {
+                        mat=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==4)
+                    {
+                        coa=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==5)
+                    {
+                        os=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==6)
+                    {
+                        db=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==7)
+                    {
+                        pro=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==8)
+                    {
+                        com=obj1[i][2].low;
+                    }
+                    if(obj1[i][0]==9)
+                    {
+                        ea=obj1[i][2].low;
+                    }
+                   }
+
+
+                    var data = google.visualization.arrayToDataTable([
+          ['Subject', 'Attempted Questions'],
+          ['Computer Networks',     cn],
+          ['DBMS',   db],
+          ['COA',  coa],
+          ['Maths', mat],
+          ['Data Structures',ds],
+          ['Operating Systems',os],
+          ['Programming',pro],
+          ['Compiler',com],
+          ['English and Aptitude',ea]
+        ]);
+
+        var options = {
+          title: 'Subjectwise Progress'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+
+                }
+                else{
+                    alert("User Already Registered");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+
+       
+      }
+    </script>
+	<script>
+var obj,i;
+var pid, msg,pimage,email,cdate,uimage,type,tid;
+var element,pfname, plname;
+function getpost()
+{
+var myemail = '<%=email %>' ;
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/gettimeline",  
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+           console.log('timeline:', dataString); 
+                if(dataString.response=="success"){
+                   obj=dataString.data;
+                   //alert(obj.length);
+				   for(i=0;i<obj.length;i++)
+				   {
+				   pid=obj[i].post.pid;
+				   pfname=obj[i].user.firstname;
+				   plname=obj[i].user.lastname;
+				   msg=obj[i].post.msg;
+				   pimage=obj[i].post.pimage;
+				   email=obj[i].user.email;
+				   cdate=obj[i].post.cdate;
+				   type=obj[i].post.type;
+				   uimage=obj[i].user.image;
+                   cdate=new Date(Number(cdate)).toString().substr(3,12);
+
+				   if(type==1)
+				   {
+				   	element= '<div class="card-post">'+
+                    '<div class="row">'+
+                    '<div class="col-xs-3 col-sm-2">'+
+                            '<a href="user-profile.html" title="User Profile">'+
+                                '<img src=';
+                    if(uimage)
+                    {
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+
+                    '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div><br>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<img src="'+pimage+'"  class="img-post">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+                    }
+                    else
+                    {
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+
+                    '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                    '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div><br>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<img src='+pimage+' class="img-post">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+                    }
+				   }
+
+				    if(type==2)
+				   {
+                    tid=obj[i].post.tid;
+
+				   	element= '<div class="card-post">'+
+                    '<div class="row">'+
+                    '<div class="col-xs-3 col-sm-2">'+
+                            '<a href="user-profile.html" title="User Profile">'+
+                                '<img src=';
+
+                        if(uimage)
+                        {
+                            element=element+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+
+                    '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<form name="f1" action="/instructions" method="post">'+
+                    '<input type="submit" name="taketest" value="Take Test" id="taketest" class="btn btn-default">'+
+                    '<input type="hidden" name="tid" value="'+tid+'">'+
+                    '</form>'+
+                  '</div>'+
+                    '</div>'+
+                    '</div>';
+
+                        }
+                        else
+                        {
+            element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+'</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                    '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<form name="f1" action="/instructions" method="post">'+
+                    '<input type="submit" name="taketest" value="Take Test" id="taketest" class="btn btn-default">'+
+                    '<input type="hidden" name="tid" value="'+tid+'">'
+                    +'</form>'+
+						'</div>'+
+                    '</div>'+
+                    '</div>';
+				   }
+				  }
+                $("#posts-container").append(element);
+				   } 
+                }
+                else{
+                    alert("error");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+    // $("body").on('click','#taketest',function(){
+    //     taketest();
+    // });
+
+}
+
+function taketest(x)
+{
+    alert(x);
+}
+
+
+</script>
+
+	
+ <style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<script type="text/javascript">
+var obj,obj1;
+var suggestions=[];
+var followers=[];
+var followings=[];
+var myemail = '<%=email %>' ;
+
+function getstuff()
+{
+    getpost();
+    getprofile();
+    getsuggestions();
+    getfollowers();
+    getfollowing();
+}
+
+function getsuggestions()
+{
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getusersuggestions",
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('usersuggestions:', dataString);
+                if(dataString.response=="success"){
+                    obj1=dataString.data;
+
+                     var i;
+                     for(i=0;i<obj1.length;i++)
+                     {
+                        var j=i+1;
+                        suggestions.push(obj1[i].email);
+                        var img2=new Image();
+                        if(obj1[i].image)
+                        {
+                        img2.src=obj1[i].image;
+                        img2.setAttribute("class","img-circle img-user");
+                        //img2.setAttribute("style","height:20px;width:15px;");
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("images"+j).appendChild(img2);
+                        }
+                        else
+                        {
+                        img2.src="img/user.jpg";
+                        img2.setAttribute("class","img-circle img-user");
+                       // img2.setAttribute("style","height:20px;width:15px;");
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("images"+j).appendChild(img2);
+                        }
+                        document.getElementById("names"+j).textContent=obj1[i].firstname;
+                     }
+                }
+                else{
+                    alert("Error4");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+
+function getprofile()
+{
+     $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getprofile",
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('profile:', dataString); 
+                if(dataString.response=="success"){
+                    var d;
+                    d=dataString;
+                    document.getElementById("names").textContent=d.data.firstname;
+                    var imgs1=new Image();
+            if(d.data.image)
+            {
+            imgs1.src=d.data.image;
+            imgs1.setAttribute("class","img-circle img-user");
+            img1.setAttribute("height","250px");
+            img1.setAttribute("width","250px");
+            document.getElementById("img1").appendChild(imgs1);
+            }
+            else
+            {
+            imgs1.src="img/user.jpg";
+            imgs1.setAttribute("class","img-circle img-user");
+            //img1.setAttribute("alt","effy1");
+            document.getElementById("img1").appendChild(imgs1);
+            }
+
+                    
+         
+                }
+                else{
+                    alert("Error1");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+
+
+    function getfollowers()
+    {
+         $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getfollowers",
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('followers:', dataString); 
+                if(dataString.response=="success"){
+                    obj=dataString.data;
+                     var i;
+         for(i=0;i<obj.length;i++)
+         {
+            var j=i+1;
+            followers.push(obj[i].email);
+            var img1=new Image();
+            if(obj[i].image)
+            {
+            img1.src=obj[i].image;
+            img1.setAttribute("class","img-circle img-user");
+            //img1.setAttribute("alt","effy1");
+            document.getElementById("image"+j).appendChild(img1);
+            }
+            else
+            {
+            img1.src="img/user.jpg";
+            img1.setAttribute("class","img-circle img-user");
+            //img1.setAttribute("alt","effy1");
+            document.getElementById("image"+j).appendChild(img1);
+            }
+            document.getElementById("name"+j).textContent=obj[i].firstname;
+         }
+                }
+                else{
+                    alert("Error2");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+        
+    }
+
+
+
+function getfollowing()
+{
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getfollowing",
+        data: {email:myemail},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                    obj1=dataString.data;
+                     var i;
+                     for(i=0;i<obj1.length;i++)
+                     {
+                        var j=i+1;
+                        followings.push(obj1[i].email);
+                        var img2=new Image();
+                        if(obj1[i].image)
+                        {
+                        img2.src=obj1[i].image;
+                        img2.setAttribute("class","img-circle img-user");
+
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("image"+j+j).appendChild(img2);
+                        }
+                        else
+                        {
+                        img2.src="img/user.jpg";
+                        img2.setAttribute("class","img-circle img-user");
+                        //img1.setAttribute("alt","effy1");
+                        document.getElementById("image"+j+j).appendChild(img2);
+                        }
+                        document.getElementById("name"+j+j).textContent=obj1[i].firstname;
+                     }
+                }
+                else{
+                    alert("Error3");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+}
+
+function viewprofile(x,y)
+{
+    var em;
+    if(x=='0')
+    {
+        em=myemail;
+    }
+    else if(x=='1')
+    {
+        em=suggestions[y];
+    }
+    else if(x=='2')
+    {
+        em=followers[y];
+    }
+    else if(x=='3')
+    {
+        em=followings[y];
+    }
+
+    makepostrequest("/profile",{email:em},"post");
+
+}
+
+  function makepostrequest(path, params, method)
+  {
+        method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+
+function viewprofilerequest(e)
+{
+    alert(e);
+}
+
+</script>
+
+
+</head>
+
+<body id="wall" onload="getstuff()">
+
+    <!--Header with Nav -->
+    <header class="text-right">
+        
+        <form class="text-left search" method="POST" action="/searchresults">
+           <input id="search" name="search" type="text" placeholder="Search..">
+        </form>
+
+        <div class="menu-icon">
+            <div class="dropdown" style="margin-top: 16px;">
+                <span class="dropdown-toggle" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="hidden-xs hidden-sm" onclick="logout()">Logout</span></span> <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+                </span>
+                
+            </div>
+        </div>
+
+
+        
+      
+        <div class="second-icon menu-icon" style="margin-top: 18px;">
+            <span clas="hidden-xs hidden-sm"><a onclick="viewprofile('0','1')" style="cursor:pointer;color:inherit;text-decoration:none;" title="Profile">Profile <i class="fa fa-user" aria-hidden="true"></i></a>
+            </span>
+        </div>
+
+
+        <div class="third-icon menu-icon">
+        <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #228B22; color:white;border-color: #228B22;" aria-haspopup="true" aria-expanded="false">Class <i class="fa fa-angle-down"></i></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="/gate">Gate</a></li>
+                        <li><a href="jee.ejs">JEE Mains</a>
+                        </li>
+                                                <li><a href="#">Class 6</a>
+                                                </li>
+                                                <li><a href="#">Class 7</a>
+                                                </li>
+                                                <li><a href="#">Class 8</a>
+                                                </li>
+                                                <li><a href="#">Class 9</a>
+                                                </li>
+                                                <li><a href="#">Class 10</a>
+                                                </li>
+                                                <li><a href="#">Class 11</a>
+                                                </li>
+                                                <li><a href="#">Class 12</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                        </ul>
+        </div>
+       
+
+       
+    </header>
+
+    <!--Left Sidebar with info Profile -->
+    <div class="sidebar-nav">
+        <a  onclick="viewprofile('0','1')" style="cursor: pointer;" title="Profile">
+            <div id="img1"></div>
+        
+        <h2 class="text-center hidden-xs" id="names"></h2>
+        </a>
+        <!-- <p class="text-center user-description hidden-xs">
+            <i>Optional Description.</i>
+        </p> -->
+        <div class=" ">
+  <div id="mySidenavClass" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()">&times;</a>
+  <a onclick='ongateclick()'>GATE</a>
+  <a >JEE Mains</a>
+  <a href="C:\My Web Sites\Home 1\irsfoundation.com\tf\templates\EducationPark\class6.html">Class 6</a>
+  <a href="class7.html">Class 7</a>
+  <a href="class8.html">Class 8</a>
+  <a href="class9.html">Class 9</a>
+  <a href="class10.html">Class 10</a>
+  <a href="class11.html">Class 11</a>
+  <a href="class12.html">Class 12</a>
+</div>
+
+<br>
+<br>
+<div>
+<ul type="none" align="left">
+  
+  <li><span style="font-size: 23px;cursor: pointer;"><a href="/createtest">Create Test</a></span></li><br>
+  <hr>
+  <li><span style="font-size: 23px;cursor: pointer;"><a href="www.naukri.com">Find Jobs</a></span></li>
+  </ul>
+</div>
+
+<script>
+    var response = '<%=response %>' ;
+//    alert(response);
+
+function ongateclick()
+{
+    window.location.href="/gate";
+}
+
+function logout()
+{
+        $.ajax({  
+        type: "GET",  
+        url: "http://localhost:3000/userlogout",
+        data: {},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                    window.location.href = '/home';
+                }
+                else{
+                    alert("Error");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+}
+
+function openNav1() {
+    document.getElementById("mySidenavClass").style.width = "250px";
+    document.getElementById("main").style.display = "none";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function openNav2() {
+    document.getElementById("mySidenavSubject").style.width = "250px";
+    document.getElementById("main").style.display = "none";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav1() {
+    document.getElementById("mySidenavClass").style.width = "0";
+    document.getElementById("main").style.display= "block";
+    document.body.style.backgroundColor = "white";
+}
+
+function closeNav2() {
+    document.getElementById("mySidenavSubject").style.width = "0";
+    document.getElementById("main").style.display= "block";
+    document.body.style.backgroundColor = "white";
+}
+</script>
+
+
+</div>
+    </div>
+    <!-- wall with post-->
+       <div class="content-posts active" id="posts">
+        <div class="primary-content">
+            <div id="posts-container" class="container-fluid container-posts" >
+
+           <div class="card-post">
+                    <form name="f1" name="createpost" encType="multipart/form-data" action="/timeline" method="post">
+                    <p style="font-size: 20px;"> Create a post....</p>
+                    <div>
+                    <textarea rows="5" cols="93" placeholder="Write your Post....." name="msg" wrap="soft" style="resize: none;overflow: hidden;"></textarea>
+                    </div>
+                    <br>
+                    <div align="right">
+                    <div style="float: left;">
+                    <input type="file" id='pimage' name="postimage" accept="image/x-png,image/jpeg">
+                    </div>
+                    <div style="float: right;">
+                    <input type="submit" value="Create Post" name="post" class="btn btn-default">
+                    </div>
+                    </div>
+                    <input type="hidden" name="email" value="mkaushik969@gmail.com">
+                    </form>
+            </div>
+                
+            </div>
+        <div id="loading">
+                    <img src="img/load.gif" alt="loader">
+                </div>
+        </div>
+
+        <!--Close #posts-container-->
+        <div class="sidebar-right hidden-xs hidden-sm">
+            <div class="card-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="curve_chart" style="width: 300px; height: 300px;"></div>
+                        <div id="piechart" style="width:300px; height: 300px;"></div>
+						
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <div class="card-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Suggestions</h3>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','0')" style="cursor: pointer;">
+                        <div id="images1"></div><br>
+                        <h6 align="center" id="names1"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','1')" style="cursor: pointer;">
+                        <div id="images2"></div><br>
+
+                        <h6 align="center" id="names2"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','2')" style="cursor: pointer;">
+                        <div id="images3"></div><br>
+                        <h6 align="center" id="names3"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','3')" style="cursor: pointer;">
+                        <div id="images4"></div><br>
+                        <h6 align="center" id="names4"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','4')" style="cursor: pointer;">
+                       <div id="images5"></div><br>
+                        <h6 align="center" id="names5"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','5')" style="cursor: pointer;">
+                        <div id="images6"></div><br>
+                        <h6 align="center" id="names6"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','6')" style="cursor: pointer;">
+                        <div id="images7"></div><br>
+                        <h6 align="center" id="names7"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('1','7')" style="cursor: pointer;">
+                        <div id="images8"></div><br>
+                        <h6 align="center" id="names8"></h6>
+                      </a>
+                    </div>
+              </div>
+           </div>
+
+
+
+            <div class="card-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Followers</h3>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','0')" style="cursor: pointer;">
+                        <div id="image1"></div><br>
+                        <h6 align="center" id="name1"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','1')" style="cursor: pointer;">
+                        <div id="image2"></div><br>
+                        <h6 align="center" id="name2"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','2')" style="cursor: pointer;">
+                        <div id="image3"></div><br>
+                        <h6 align="center" id="name3"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','3')" style="cursor: pointer;">
+                        <div id="image4"></div><br>
+                        <h6 align="center" id="name4"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','4')" style="cursor: pointer;">
+                       <div id="image5"></div><br>
+                        <h6 align="center" id="name5"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','5')" style="cursor: pointer;">
+                        <div id="image6"></div><br>
+                        <h6 align="center" id="name6"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','6')" style="cursor: pointer;">
+                        <div id="image7"></div><br>
+                        <h6 align="center" id="name7"></h6>
+                      </a>
+                    </div>
+                    <div class="col-xs-3 popular-img">
+                      <a onclick="viewprofile('2','7')" style="cursor: pointer;">
+                        <div id="image8"></div><br>
+                        <h6 align="center" id="name8"></h6>
+                      </a>
+                    </div>
+              </div>
+           </div>
+           <div class="card-post">
+             <div class="row">
+                 <div class="col-sm-12">
+                     <h3>Following</h3>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','0')" style="cursor: pointer;">
+                     <div id="image11"></div><br>
+                        <h6 align="center" id="name11"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','1')" style="cursor: pointer;">
+                     <div id="image22"></div><br>
+                        <h6 align="center" id="name22"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','2')" style="cursor: pointer;">
+                     <div id="image33"></div><br>
+                    <h6 align="center" id="name33"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','3')" style="cursor: pointer;">
+                     <div id="image44"></div><br>
+                        <h6 align="center" id="name44"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','4')" style="cursor: pointer;">
+                     <div id="image55"></div><br>
+                        <h6 align="center" id="name55"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','5')" style="cursor: pointer;">
+                     <div id="image66"></div><br>
+                        <h6 align="center" id="name66"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','6')" style="cursor: pointer;">
+                     <div id="image77"></div><br>
+                        <h6 align="center" id="name77"></h6>
+                   </a>
+                 </div>
+                    <div class="col-xs-3 popular-img">
+                   <a onclick="viewprofile('3','7')" style="cursor: pointer;">
+                     <div id="image88"></div><br>
+                        <h6 align="center" id="name88"></h6>
+                   </a>
+                 </div>
+           </div>
+           </div>
+
+        </div>
+      </div>
+        <!--<div id="loading">
+            <img src="img/load.gif" alt="loader">
+        </div>-->
+    </div><!-- Close #posts -->
+
+    <!-- Modal container for settings--->
+    <div id="settingsmodal" class="modal fade text-center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

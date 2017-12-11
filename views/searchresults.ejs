@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDSONET-SearchResults</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" type="text/css">
+    <script src="lib/jquery-3.2.0.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-switch/css/bootstrap-switch.min.css">
+    <script src="lib/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="js/lazy-load.min.js"></script>
+    <script src="js/socialyte.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+	<script type="text/javascript">
+
+    var query = '<%=txt %>' ;
+
+    function getsearch()
+    {
+        getuser();
+        getposts();
+    }
+
+var obj,i;
+var pid, msg,pimage,email,cdate,uimage,type;
+var element,pfname, plname;
+function getuser()
+{
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getusersearchresults",  
+        data: {txt:query},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+           console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                   obj=dataString.data;
+                   //alert(obj.length);
+				   for(i=0;i<obj.length;i++)
+				   {				   
+				   pfname=obj[i].firstname;
+				   plname=obj[i].lastname;
+				   email=obj[i].email;
+				   uimage=obj[i].image;
+                   ucity=obj[i].city;
+				   	element= '<div class="card-post">'+
+                    '<div class="row">'+
+                    '<div class="col-xs-3 col-sm-2">'+
+                            '<a href="#">'+
+                                '<img src=';
+                    if(uimage)
+                    {
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+ '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="#" >'+pfname+' ' +plname+'</a></h3>'+
+                        '<h4><b>'+ucity+'</b></h4>'+
+                    '</div>'+  '</div><br>'+   '</div>';
+                    }
+                    else
+                    {
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+   '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="" >'+pfname+' ' +plname+'</a></h3>'+
+                        '<h4><b>'+ucity+'</b></h4>'+
+                    '</div>'+  '</div><br>'+     '</div>';
+                    }
+                     
+                            $("#posts-container1").append(element);
+						}  
+                }
+                else{
+                    alert("error");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+    return false;
+}
+
+
+var element1;
+function getposts()
+{
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getpostsearchresults",  
+        data: {txt:query},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+           console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                   obj=dataString.data;
+                   //alert(obj.length);
+                   for(i=0;i<obj.length;i++)
+                   {
+                   pid=obj[i].post.pid;
+                   pfname=obj[i].user.firstname;
+                   plname=obj[i].user.lastname;
+                   msg=obj[i].post.msg;
+                   pimage=obj[i].post.pimage;
+                   email=obj[i].user.email;
+                   cdate=obj[i].post.cdate;
+                   type=obj[i].post.type;
+                   uimage=obj[i].user.image;
+
+                   if(type==1)
+                   {
+                    element= '<div class="card-post">'+
+                    '<div class="row">'+
+                    '<div class="col-xs-3 col-sm-2">'+
+                            '<a href="#" >'+
+                                '<img src=';
+                    if(uimage)
+                    {
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+
+                    '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div><br>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<img src="'+pimage+'"  class="img-post">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+                    }
+                    else
+                    {
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+
+                    '</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div><br>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                        '<img src='+pimage+' class="img-post">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+                    }
+                     $("#posts-container2").append(element);
+                     
+                   }
+
+
+
+
+                    if(type==2)
+                   {
+                    element1= '<div class="card-post">'+
+                    '<div class="row">'+
+                    '<div class="col-xs-3 col-sm-2">'+
+                            '<a href="#">'+
+                                '<img src=';
+
+                        if(uimage)
+                        {
+                            element1=element1+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
+                            '</a>'+'</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="#" >'+pfname+'</a></h3>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+'</div>'+ '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p>'+msg+' </p>'+
+                 '<input type="button" name="taketest" value="Take Test" id="taketest" onclick="taketest()" class="btn btn-default">'+
+                  '</div>'+ '</div>'+  '</div>';
+
+                        }
+                        else
+                        {
+            element1=element1+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+   '</a>'+'</div>'+
+                    '<div class="col-xs-9 col-sm-10 info-user">'+
+                        '<h3><a href="#">'+pfname+'</a></h3>'+
+                        '<p><i>'+cdate+'</i></p>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                    '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
+                        '<p><a>'+msg+'</a> </p>'+
+                    '<input type="button" name="taketest" value="Take Test" id="taketest" onclick="taketest()" class="btn btn-default">'+
+                        '</div>'+
+                    '</div>'+
+                    '</div>';
+                   }
+                    $("#posts-container3").append(element1);
+                  }
+                           
+                   } 
+                }
+                else{
+                    alert("error");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+    return false;
+}
+
+
+
+</script>
+
+	
+ <style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+
+</head>
+
+<body id="wall" onload="getsearch()">
+
+    <!--Header with Nav -->
+    <header class="text-right">
+        <form class="text-left search" method="GET">
+            <input name="q" type="text" placeholder="Search..">
+        </form>
+        <div class="menu-icon">
+            <div class="dropdown">
+                <span class="dropdown-toggle" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="hidden-xs hidden-sm">Settings</span> <i class="fa fa-cogs" aria-hidden="true"></i>
+                </span>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownSettings">
+                    <li>
+                        <a href="settings.html" title="Settings" data-toggle="modal" data-target="#settingsmodal">
+                            <div class="col-xs-4">
+                                <i class="fa fa-wrench" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-8 text-left">
+                                <span>Settings</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Settings">
+                            <div class="col-xs-4">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-8 text-left">
+                                <span onclick="logout()">Logout</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="second-icon dropdown menu-icon">
+            <span class="dropdown-toggle" role="button" id="dropdownNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="hidden-xs hidden-sm">Notifications</span> <i class="fa fa-bell-o" aria-hidden="true"></i> <span class="badge">2</span>
+            </span>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownNotification">
+                <li class="new-not">
+                    <a href="#" title="User name comment"><img src="img/user2.jpg" alt="User name" class="img-circle img-user-mini"> Unread notification</a>
+                </li>
+                <li class="new-not">
+                    <a href="#" title="User name comment"><img src="img/user3.jpg" alt="User name" class="img-circle img-user-mini"> Unread notification</a>
+                </li>
+                <li>
+                    <a href="#" title="User name comment"><img src="img/user4.jpg" alt="User name" class="img-circle img-user-mini"> Read notification</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#" title="All notifications">All Notifications</a></li>
+            </ul>
+        </div>
+        <div class="second-icon menu-icon">
+            <span><a href="personal-profile.html" title="Profile"><span class="hidden-xs hidden-sm">Profile</span> <i class="fa fa-user" aria-hidden="true"></i></a>
+            </span>
+        </div>
+        <div class="second-icon menu-icon">
+            <span><a href="wall.html" title="Wall"><span class="hidden-xs hidden-sm">Posts</span> <i class="glyphicon glyphicon-book" aria-hidden="true"></i></a>
+            </span>
+        </div>
+    </header>
+      
+
+
+<script>
+
+function logout()
+{
+        $.ajax({  
+        type: "GET",  
+        url: "http://localhost:3000/userlogout",
+        data: {},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                    window.location.href = '/home';
+                }
+                else{
+                    alert("Error");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+}
+
+</script>
+
+
+</div>
+        <!-- wall with post-->
+             <div class="profile-content">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#posts" role="tab" id="postsTab" data-toggle="tab" aria-controls="posts" aria-expanded="true">People</a></li>
+            <li><a href="#profile" role="tab" id="profileTab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Posts</a></li>
+            <li><a href="#tests" role="tab" id="testTab" data-toggle="tab" aria-controls="tests" aria-expanded="true">Tests</a></li>
+        </ul>
+        </div>
+
+        <!--Start Tab Content-->
+        <div class="tab-content">
+
+            <!-- Tab Posts -->
+            <div class="tab-pane fade active in" role="tabpanel" id="posts" aria-labelledby="postsTab">
+                <div id="posts-container1" class="container-fluid container-posts">                                        
+                </div>
+            </div><!-- end Tab Posts -->
+
+
+
+
+            <!--Start Tab Profile-->
+            <div class="tab-pane fade" role="tabpanel" id="profile" aria-labelledby="profileTab">
+                <div class="container-fluid container-posts" id="posts-container2">                    
+                    </div>
+            </div><!-- end tab Profile -->
+
+
+            <!--start tests tab-->
+            <div class="tab-pane fade" role="tabpanel" id="tests" aria-labelledby="testTab">
+                <div class="container-fluid container-posts" id="posts-container3">
+                     </div>
+            </div> <!-- end tests tab-->
+
+        </div><!-- Close Tab Content-->
+
+    </div><!--Close content posts-->
+
+       
+      </div>
+     
+    </div><!-- Close #posts -->
+
+    
+
+</body>
+
+</html>

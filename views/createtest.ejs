@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/account.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-CONDUCT TEST</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#selct1").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+      
+
+            if(optionValue=="mains"){            
+                $("#mains").show();
+                  $("#gate").hide();
+            }
+
+            
+            if(optionValue=="gate"){
+               $("#gate").show();
+               $("#mains").hide();
+            }
+        });
+    }).change();
+   
+});
+</script>
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#selct11").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue1 = $(this).attr("value");
+            if(optionValue1=="cs")
+            {
+              $("#cs").show();
+            }
+            else
+            {
+              $("#cs").hide();
+            }
+
+          });
+      }).change();
+  });
+</script>
+    <div class="preloader"></div>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="irs-header-top-col irs-center-2">
+                            <p style="color:white; font-size: 30px;font-family: 'Times New Roman';">EDSONET</p>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+         
+
+
+    </header>
+    <!-- Main Header end -->
+
+    
+
+    <!-- Account start -->
+    <section class="irs-account-field">
+    <div class="container">
+
+    <h1 style="color:#228B22;font-size:40px;"><center><u><b> CONDUCT TEST FORM</b></u></center></h1>
+    <br><br>
+
+        <form class="form-horizontal" name="f1" id="form1">
+
+        <center>
+          <div class="row">
+          
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Class :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control">
+                        <option>Select</option>
+                        <option value="gate">Gate</option>
+                        <option value="mains">JEE Mains</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="gate" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct11" class="control-label col-sm-3">Course :</label>
+                        <div class="col-sm-8">
+                        <select id="selct11" class="form-control">
+                        <option>Select</option>
+                        <option value="cs">CSE & IT</option>
+                        <option>Civil</option>
+                        <option>Electronics and Communication</option>
+                        <option>Biotechnology</option>
+                        <option>Mechnical Engg</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12" id="mains" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct11" class="control-label col-sm-3">Course :</label>
+                        <div class="col-sm-8">
+                        <select id="selct5" class="form-control">
+                        <option>Select</option>
+                        <option>Maths</option>
+                        <option>Chemistry</option>
+                        <option>Physics</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12" id="cs" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct111" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option >Select</option>
+                        <option value="1">Computer Networks</option>
+                        <option value="2">Data Structures</option>
+                        <option value="3">Maths</option>
+                        <option value="4">Computer Organization & Architecture</option>
+                        <option value="5">Operating Systems</option>
+                        <option value="6">DataBase Systems</option>
+                        <option value="7">Programming</option>
+                        <option value="8">Compiler</option>
+                        <option value="9">General English and Aptitude</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="selctt1" class="control-label col-sm-3">Difficulty :</label>
+                        <div class="col-sm-8">
+                        <select id="selct2" class="form-control" name="level">
+                        <option >Select</option>
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="selctt11" class="control-label col-sm-3">Timer:</label>
+                        <div class="col-sm-8">
+                        <select id="selct3" class="form-control" name="timer">
+                        <option >Select</option>
+                        <option value="20">20 Min</option>
+                        <option value="30">30 Min</option>
+                        <option value="45">45 Min</option>
+                        <option value="60">60 Min</option>
+                        <option value="90">90 Min</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="col-sm-offset-3 col-sm-8">
+                            <input type="button" onclick="validateform()" value="Submit" name="submit" class="btn btn-default">
+                        </label>
+                        </div>
+                </div>
+                
+                </center>
+
+
+        </form>
+
+    </div>
+       
+    </section>
+    <!-- Account end -->
+
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+<script type="text/javascript">
+
+    function validateform()
+    {
+//        alert('yahahahaa');
+//        var clas=document.getElementById("selct1").value;
+//        var crse=document.getElementById("selct11").value;
+        var sub= document.forms["f1"]["tag"].value;
+        var dif= document.forms["f1"]["level"].value;
+        var tmr= document.forms["f1"]["timer"].value;
+
+        $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/createt",  
+        data: {'email':'mkaushik969@gmail.com','subject':sub,'level':dif,'timer':tmr},  
+        success: function(dataString) {        
+            console.log('response:', dataString); 
+                if(dataString.response=="success"){
+                    top.location.href = '/timeline';
+                }
+                else{
+                    alert("Submission Failed");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+
+    return false;
+    }
+</script>
+
+</body>
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/index-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:07:22 GMT -->
+</html>

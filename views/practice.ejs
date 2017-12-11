@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/courses-left-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:26 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-Pratice</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+    var obj1;
+    var pageno=1;
+    var ttlpage;
+
+    function getnext()
+    {
+      pageno=pageno+1;
+      getques();
+      
+    }
+
+    function getprev()
+    {
+      pageno=pageno-1;
+      getques();
+     
+    }
+
+    function getques(){
+
+    var tagid = '<%=tagid %>' ;
+     $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getpractice",  
+        data: { 'tagid':tagid},  
+        success: function(dataString) {        
+            console.log('hello:', dataString); 
+          if(dataString.response=="success"){
+          var myObj;
+          ttlpage=dataString.total;
+          myObj = dataString.data;
+          obj1=myObj;
+          //alert(obj1);
+          var i;
+          for(i=0;i<myObj.length;i++)
+          {
+          var j=i+1;
+          if(myObj[i].ques)
+          {
+          document.getElementById("ques"+j).innerHTML = myObj[i].ques;
+          }
+          else
+          {
+            var img = new Image();
+          img.src = myObj[i].qimage;
+          img.setAttribute("class", "banner-img");
+          //img.setAttribute("alt", "effy");
+          document.getElementById("img-container1").appendChild(img);
+          }
+
+          if(myObj[i].opt1)
+          {
+            document.getElementById("opt"+j+"1").innerHTML = myObj[i].opt1;
+          }
+          else
+          {
+            var img1=new Image();
+              img1.src=myObj[i].opt1image;
+              img1.setAttribute("class","banner-img");
+              //img1.setAttribute("alt","effy1");
+              document.getElementById("img-container"+j+"1").appendChild(img1);
+          }
+          
+          if(myObj[i].opt2)
+          {
+            document.getElementById("opt"+j+"2").innerHTML = myObj[i].opt2;
+          }
+          else
+          {
+            var img2=new Image();
+          img2.src=myObj[i].opt2image;
+          img2.setAttribute("class","banner-img");
+          //img2.setAttribute("alt","effy1");
+          document.getElementById("img-container"+j+"2").appendChild(img2);
+          }
+
+          if(myObj[i].opt3)
+          {
+            document.getElementById("opt"+j+"3").innerHTML = myObj[i].opt3;
+          }
+          else
+          {
+                var img3=new Image();
+          img3.src=myObj[i].opt3image;
+          img3.setAttribute("class","banner-img");
+          //img3.setAttribute("alt","effy1");
+          document.getElementById("img-container"+j+"3").appendChild(img3);
+          }
+
+          if(myObj[i].opt4)
+          {      
+           document.getElementById("opt"+j+"4").innerHTML = myObj[i].opt4;
+          }
+          else
+            {   
+             var img4=new Image();
+          img4.src=myObj[i].opt4image;
+          img4.setAttribute("class","banner-img");
+          //img4.setAttribute("alt","effy1");
+          document.getElementById("img-container"+j+"4").appendChild(img4);
+          }
+
+          }
+           if(pageno==1)
+      {
+        document.getElementById("prev").disabled=true;
+      }
+      else
+      {
+        document.getElementById("prev").disabled=false;
+      }
+
+      if(pageno==ttlpage)
+      {
+        document.getElementById("next").disabled=true;
+      }
+      else
+      {
+        document.getElementById("next").disabled=false;
+      }
+
+
+                }
+                else{
+                    alert("Something's wrong");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+    return false;
+}           
+  
+
+  
+  function makepostrequest(path, params, method)
+  {
+        method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+    function getq(x)
+    {
+        makepostrequest("/practice",{tagid:x},"post");
+    }
+
+function chkans(x,y)
+{
+  //alert(x);
+  //alert(y);
+  var anss=obj1[y-1].correct;
+  var cid;
+  if(obj1[y-1].opt1id==anss)
+  {
+    cid=obj1[y-1].opt1;
+  }
+  if(obj1[y-1].opt2id==anss)
+  {
+    cid=obj1[y-1].opt2;
+  }
+  if(obj1[y-1].opt3id==anss)
+  {
+    cid=obj1[y-1].opt3;
+  }
+  if(obj1[y-1].opt4id==anss)
+  {
+    cid=obj1[y-1].opt4;
+  }
+  //alert(anss);
+  var vans;
+  var y1;
+  if(x==1)
+   {
+       vans=obj1[y-1].opt1id;
+       y1=obj1[y-1].opt1;
+   }
+   if(x==2)
+     {
+         vans=obj1[y-1].opt2id;
+         y1=obj1[y-1].opt2;
+    }
+    if(x==3)
+     {
+         vans=obj1[y-1].opt3id;
+         y1=obj1[y-1].opt3;
+          }
+    if(x==4)
+   {
+       vans=obj1[y-1].opt4id;
+       y1=obj1[y-1].opt4;
+   }
+   if(anss==vans)
+    {
+        document.getElementById("output"+y).innerHTML="<b>STATUS:</b>  Correct Answer";
+        //document.getElementById("ans"+y).textContent=y1;
+        document.getElementById("exp"+y).innerHTML="<b>EXPLANATION: </b> "+obj1[y-1].exp;
+    }
+    else
+   
+    {
+        document.getElementById("output"+y).innerHTML="<b>STATUS: </b> Wrong Answer";
+        document.getElementById("ans"+y).innerHTML="<b>CORRECT ANSWER  </b> "+cid;
+        document.getElementById("exp"+y).innerHTML="<b>EXPLANATION:  </b>"+obj1[y-1].exp;
+   }
+
+}
+
+
+    </script>
+
+
+</head>
+
+<body onload="getques()">
+    <div class="preloader"></div>
+
+    <!-- Inner page hedaing start -->
+    <section class="irs-inner-page-heading irs-layer-black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="irs-inner-heading">
+                        <h2>Practice Questions</h2>
+                        <i class="icofont icofont-education"></i>
+                        <p><a href="index-layout1.html">Home</a> > Questions
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Inner page hedaing end -->
+
+    <!-- courses start -->
+    <section class="irs-courses-field">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="irs-side-bar">
+                        <div class="irs-search-box">
+                            <form>
+                                <div class="input-group">
+                                    <input placeholder="Search..." class="form-control" name="search-field" type="text">
+                                    <span class="input-group-btn">
+										<button type="submit" class="btn"><i class="fa fa-search"></i></button>
+									</span>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="irs-categories">
+                            <h3 class="irs-sidebar-title">Categories</h3>
+                            <ul>
+							                  <li onclick='getq("1")'><i class="fa fa-check" aria-hidden="true"></i>Computer Networks</li>
+                                <li onclick='getq("2")'><i class="fa fa-check" aria-hidden="true"></i>Data Structures</li>
+                                <li onclick='getq("3")'><i class="fa fa-check" aria-hidden="true"></i>Maths</li>
+                                <li onclick='getq("4")'><i class="fa fa-check" aria-hidden="true"></i>Computer Organization & Architecture</li>
+                                <li onclick='getq("5")'><i class="fa fa-check" aria-hidden="true"></i>Operating Systems</li>
+                                <li onclick='getq("6")'><i class="fa fa-check" aria-hidden="true"></i>Database Systems</li>
+                                <li onclick='getq("7")'><i class="fa fa-check" aria-hidden="true"></i>Programming</li>
+                                <li onclick='getq("8")'><i class="fa fa-check" aria-hidden="true"></i>Compiler Design</li>
+                                <li onclick='getq("9")'><i class="fa fa-check" aria-hidden="true"></i>General English And Aptitude</li>
+                            </ul>
+                        </div>
+                        <div class="irs-video">
+                           <!-- <h3 class="irs-sidebar-title">educational <span>video</span></h3>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hWkKSkI3gkU"></iframe>
+                            </div>-->
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h1 align="center"><div id="sub"></div></h1>
+                    
+<div id= "questions">
+<span><b>Ques 1.</b></span><span id="ques1"></span><br>
+<div id="img-container1"></div>
+<input type="radio" name="answer1" class="opt11" onclick="chkans('1','1')"> <span id="opt11"></span><span id="img-container11"></span><br>
+<input type="radio" name="answer1" class="opt12" onclick="chkans('2','1')"> <span id="opt12"></span><span id="img-container12"></span><br>
+<input type="radio" name="answer1" class="opt13" onclick="chkans('3','1')"> <span id="opt13"></span><span id="img-container13"></span><br>
+<input type="radio" name="answer1" class="opt14" onclick="chkans('4','1')"> <span id="opt14"></span><span id="img-container14"></span><br>
+<div id="output1"><h2></h2></div>
+<div id="ans1"><h2></h2></div>
+<div id="exp1"><h2></h2></div>
+
+<br>
+<span><b>Ques 2. </b></span><span id="ques2"></span><br>
+<div id="img-container2"></div>
+<input type="radio" name="answer2" onclick="chkans('1','2')"> <span id="opt21"></span><span id="img-container21"></span><br>
+<input type="radio" name="answer2" onclick="chkans('2','2')"> <span id="opt22"></span><span id="img-container22"></span><br>
+<input type="radio" name="answer2" onclick="chkans('3','2')"> <span id="opt23"></span><span id="img-container23"></span><br>
+<input type="radio" name="answer2" onclick="chkans('4','2')"> <span id="opt24"></span><span id="img-container24"></span><br>
+<div id="output2"><h2></h2></div>
+<div id="ans2"><h2></h2></div>
+<div id="exp2"><h2></h2></div>
+
+<br>
+<span><b>Ques 3. </b></span><span id="ques3"></span><br>
+<div id="img-container3"></div>
+<input type="radio" name="answer3" onclick="chkans('1','3')"> <span id="opt31"></span><span id="img-container31"></span><br>
+<input type="radio" name="answer3" onclick="chkans('2','3')"> <span id="opt32"></span><span id="img-container32"></span><br>
+<input type="radio" name="answer3" onclick="chkans('3','3')"> <span id="opt33"></span><span id="img-container33"></span><br>
+<input type="radio" name="answer3" onclick="chkans('4','3')"> <span id="opt34"></span><span id="img-container34"></span><br>
+<div id="output3"><h2></h2></div>
+<div id="ans3"><h2></h2></div>
+<div id="exp3"><h2></h2></div>
+
+<br>
+<span><b>Ques 4. </b></span><p id="ques4"></p><br>
+<div id="img-container4"></div>
+<input type="radio" name="answer4" onclick="chkans('1','4')"> <span id="opt41"></span><span id="img-container41"></span><br>
+<input type="radio" name="answer4" onclick="chkans('2','4')"> <span id="opt42"></span><span id="img-container42"></span><br>
+<input type="radio" name="answer4" onclick="chkans('3','4')"> <span id="opt43"></span><span id="img-container43"></span><br>
+<input type="radio" name="answer4" onclick="chkans('4','4')"> <span id="opt44"></span><span id="img-container44"></span><br>
+<div id="output4"><h2></h2></div>
+<div id="ans4"><h2></h2></div>
+<div id="exp4"><h2></h2></div>
+
+<br>
+<span><b>Ques 5. </b></span><p id="ques5"></p><br>
+<div id="img-container5"></div>
+<input type="radio" name="answer5" onclick="chkans('1','5')"> <span id="opt51"></span><span id="img-container51"></span><br>
+<input type="radio" name="answer5" onclick="chkans('2','5')"> <span id="opt52"></span><span id="img-container52"></span><br>
+<input type="radio" name="answer5" onclick="chkans('3','5')"> <span id="opt53"></span><span id="img-container53"></span><br>
+<input type="radio" name="answer5" onclick="chkans('4','5')"> <span id="opt54"></span><span id="img-container54"></span><br>
+<div id="output5"><h2></h2></div>
+<div id="ans5"><h2></h2></div>
+<div id="exp5"><h2></h2></div>
+
+<br>
+<span><b>Ques 6. </b></span><p id="ques6"></p><br>
+<div id="img-container6"></div>
+<input type="radio" name="answer6" onclick="chkans('1','6')"> <span id="opt61"></span><span id="img-container61"></span><br>
+<input type="radio" name="answer6" onclick="chkans('2','6')"> <span id="opt62"></span><span id="img-container62"></span><br>
+<input type="radio" name="answer6" onclick="chkans('3','6')"> <span id="opt63"></span><span id="img-container63"></span><br>
+<input type="radio" name="answer6" onclick="chkans('4','6')"> <span id="opt64"></span><span id="img-container64"></span><br>
+<div id="output6"><h2></h2></div>
+<div id="ans6"><h2></h2></div>
+<div id="exp6"><h2></h2></div>
+
+
+<br>
+<span><b>Ques 7. </b></span><p id="ques7"></p><br>
+<div id="img-container7"></div>
+<input type="radio" name="answer7" onclick="chkans('1','7')"> <span id="opt71"></span><span id="img-container71"></span><br>
+<input type="radio" name="answer7" onclick="chkans('2','7')"> <span id="opt72"></span><span id="img-container72"></span><br>
+<input type="radio" name="answer7" onclick="chkans('3','7')"> <span id="opt73"></span><span id="img-container73"></span><br>
+<input type="radio" name="answer7" onclick="chkans('4','7')"> <span id="opt74"></span><span id="img-container74"></span><br>
+<div id="output7"><h2></h2></div>
+<div id="ans7"><h2></h2></div>
+<div id="exp7"><h2></h2></div>
+
+<br>
+<span><b>Ques 8. </b></span><p id="ques8"></p><br>
+<div id="img-container8"></div>
+<input type="radio" name="answer8" onclick="chkans('1','8')"> <span id="opt81"></span><span id="img-container81"></span><br>
+<input type="radio" name="answer8" onclick="chkans('2','8')"> <span id="opt82"></span><span id="img-container82"></span><br>
+<input type="radio" name="answer8" onclick="chkans('3','8')"> <span id="opt83"></span><span id="img-container83"></span><br>
+<input type="radio" name="answer8" onclick="chkans('4','8')"> <span id="opt84"></span><span id="img-container84"></span><br>
+<div id="output8"><h2></h2></div>
+<div id="ans8"><h2></h2></div>
+<div id="exp8"><h2></h2></div>
+
+<br>
+<span><b>Ques 9. </b></span><p id="ques9"></p><br>
+<div id="img-container9"></div>
+<input type="radio" name="answer9" onclick="chkans('1','9')"> <span id="opt91"></span><span id="img-container91"></span><br>
+<input type="radio" name="answer9" onclick="chkans('2','9')"> <span id="opt92"></span><span id="img-container92"></span><br>
+<input type="radio" name="answer9" onclick="chkans('3','9')"> <span id="opt93"></span><span id="img-container93"></span><br>
+<input type="radio" name="answer9" onclick="chkans('4','9')"> <span id="opt94"></span><span id="img-container94"></span><br>
+<div id="output9"><h2></h2></div>
+<div id="ans9"><h2></h2></div>
+<div id="exp9"><h2></h2></div>
+
+<br>
+<span><b>Ques 10. </b></span><p id="ques10"></p><br>
+<div id="img-container10"></div>
+<input type="radio" name="answer10" onclick="chkans('1','10')"> <span id="opt101"></span><span id="img-container101"></span><br>
+<input type="radio" name="answer10" onclick="chkans('2','10')"> <span id="opt102"></span><span id="img-container102"></span><br>
+<input type="radio" name="answer10" onclick="chkans('3','10')"> <span id="opt103"></span><span id="img-container103"></span><br>
+<input type="radio" name="answer10" onclick="chkans('4','10')"> <span id="opt104"></span><span id="img-container104"></span><br>
+<div id="output10"><h2></h2></div>
+<div id="ans10"><h2></h2></div>
+<div id="exp10"><h2></h2></div>
+</div>
+<div id="jump">
+<input type="button" value="Previous" name="Prev" onclick="getprev()" class="btn btn-default" style="float:left;" id="prev">
+<input type="button" name="Nex" value="Next" onclick="getnext()" class="btn btn-default" style="float:right;" id="next">
+
+</div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- courses end -->
+
+  <!-- Footer start -->
+    <footer class="irs-footer-field">
+        <div class="container">
+            <div class="row animatedParent animateOnce animateOnce">
+                <div class="col-md-4">
+                    <div class="irs-footer-about">
+                       <!-- <img class="irs-foooter-logo" src="images/footer-logo.png" alt="">-->
+                        <p>Educational Social Network is a platform where students of various age groups will
+                        be able to test their academic skills by giving test and check their performance for
+                        monthly activity or on a particular subject .</p>
+                        <div class="irs-social">
+                            <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                            <a href="#"><i class="icofont icofont-social-twitter"></i></a>
+                            <a href="#"><i class="icofont icofont-social-vimeo"></i></a>
+                            <a href="#"><i class="icofont icofont-brand-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="irs-footer-link">
+                        <h4 class="irs-footer-heading">Useful Links</h4>
+                        <ul>
+                            <li><a href="/home">Home</a>
+                            </li>
+                            <li><a href="/about">About Us</a>
+                            </li>
+                            <li><a href="/gate">Courses</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+              
+                <div class="col-md-4">
+                    <div class="irs-footer-contact">
+                        <h4 class="irs-footer-heading">Contact Us</h4>
+                        
+                        <div class="irs-mailbox">
+                            <p><i class="zmdi zmdi-email"></i> Mail: edsonet.project@gmail.com </p>
+                            <p><i class="zmdi zmdi-gps-dot"></i> A-10 Jaypee Institute of Information Technology <br> Sector 62, Noida , Uttar Pradesh 201309</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/courses-left-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:32 GMT -->
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/account.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-TestResult</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body onload="getInfo()">
+
+    <div class="preloader"></div>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="irs-header-top-col irs-center-2">
+                            <p style="color:white;font-family: 'Times New Roman';font-size:50px"> EDSONET</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+         
+
+
+    </header>
+    <!-- Main Header end -->
+
+    
+
+    <!-- Account start -->
+    <section class="irs-account-field">
+    <div class="container">
+    
+
+
+    <h1 style="color:#228B22;font-size:40px;"><center><u><b><div id="cls"></div> TEST</b></u></center></h1>
+    <br><br>
+    <center>
+    <h2> You have submitted the test sucessfully.</h2>
+    <ul>
+    <li><i> Number of questions : 10</i></li>
+    <li style="color:green;"><i class="glyphicon glyphicon-ok"> Correct Questions : <span id="crt"></span></i></li>
+    <li style="color:red;"><i class="glyphicon glyphicon-remove"> Incorrect Questions : <span id="incrt"></span></i></li>
+    </ul>
+    </center>
+       
+    </section>
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+    function getInfo()
+    {
+    var response = localStorage.getItem('response');
+    var correct = localStorage.getItem('correct');
+    var incorrect = localStorage.getItem('incorrect');
+    document.getElementById("crt").textContent=correct;
+    document.getElementById("incrt").textContent=incorrect;
+
+    }
+    </script>
+</body>
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/index-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:07:22 GMT -->
+</html>

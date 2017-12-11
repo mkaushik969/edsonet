@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-Sign Up</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    
+
+</head>
+
+<body>
+    <div class="preloader"></div>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="irs-header-top-col irs-center-2">
+                            <p style="color:white; font-size: 30px;font-family: 'Times New Roman';">EDSONET</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="irs-header-nav scrollingto-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-sm-12">
+                        <nav class="navbar navbar-default irs-navbar">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
+                                         <li>
+                                            <a href="/home" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                            
+                                        </li>
+                                        <li><a href="/about">About</a>
+                                        </li>
+                                        
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Class <i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/gate">GATE </a>
+                                                </li>
+                                                <li><a href="/jee">JEE MAINS</a>
+                                                </li>
+                                                <li><a href="#">Class 6</a>
+                                                </li>
+                                                <li><a href="#">Class 7</a>
+                                                </li>
+                                                <li><a href="#">Class 8</a>
+                                                </li>
+                                                <li><a href="#">Class 9</a>
+                                                </li>
+                                                <li><a href="#">Class 10</a>
+                                                </li>
+                                                <li><a href="#">Class 11</a>
+                                                </li>
+                                                <li><a href="#">Class 12</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                  
+
+
+                                         <li class="dropdown active">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social <i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/account">Login</a>
+                                                </li>
+                                                <li><a href="/createaccount">Sign Up</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        
+
+
+
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+    </header>
+    <!-- Main Header end -->
+
+    
+
+    <!-- Account start -->
+    <section class="irs-account-field">
+    
+        <div class="container">    
+        <div id="loginbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Sign Up</div>
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body">
+                    <form id="form1" name="f1" class="form-horizontal" encType="multipart/form-data" action="/signup" method="post">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">First Name</label>
+                        <div class="col-sm-8">
+                        <input type="text" placeholder="First Name" name="fname" class="form-control">
+                        </div>
+                        </div>
+                         <div class="form-group">
+                        <label class="control-label col-sm-3">Last Name</label>
+                        <div class="col-sm-8">
+                        <input type="text" placeholder="Last Name" name="lname" class="form-control">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Password</label>
+                        <div class="col-sm-8">
+                        <input type="password" placeholder="Enter password" name="pass" class="form-control">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Confirm Password</label>
+                        <div class="col-sm-8">
+                        <input type="password" placeholder="Re-enter password" name="cpass" class="form-control">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3" for="email">Email</label>
+                        <div class="col-sm-8">
+                        <input type="email" placeholder="Email" name="email" class="form-control">
+                        </div>
+                        </div>
+                        
+                         <div class="form-group">
+                        <label class="control-label col-sm-3" for="contact">Contact</label>
+                        <div class="col-sm-8">
+                        <input type="text" placeholder="Phone Number" name="contact" class="form-control">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3" for="institution">Institution</label>
+                        <div class="col-sm-8">
+                        <input type="text" placeholder="Institution" name="ins" class="form-control">
+                        </div>
+                        </div>
+
+
+                         <div class="form-group">
+                        <label class="control-label col-sm-3">City</label>
+                        <div class="col-sm-8">
+                        <input type="text" placeholder="Enter City Name" name="city" class="form-control">
+                        </div>
+                        </div>
+
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Profile picture</label>
+                        <div class="col-sm-8">
+                        <input type='file' id="imgInp" name="image" accept="image/x-png,image/jpeg" /><br>
+                        <img id="uploaded_img" src="#" />
+                        </div>
+                        </div>
+
+                        
+                      <div class="form-group">
+                        <label class="col-sm-offset-3 col-sm-8">
+                            <input type="submit" value="Submit" name="submit" class="btn btn-default">
+                        </label>
+                      </div>
+
+                        <div style="float:left; font-size:80%;">Already Registered ? <a href="/account"> Click here</a> to login.</div>
+
+                    </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- Account end -->
+
+   <!-- Footer start -->
+   
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+// console.log('sdf');
+// (function() {
+//     console.log('asd');
+//     // $('#form1').on('submit', function (e) {
+//         // body...
+//         // e.preventDefault();
+//         // required();
+//         // return false;
+//     // })
+// })();
+
+// function required(e)
+// {
+    
+    
+    // if(x=="" || x==" " || !x.match(letters))
+    // {
+    // alert("Please enter name consisting of letters only.");
+    // return false;
+    // }
+    // if(y=="" || y==" " || !y.match(letters))
+    // {
+    // alert("Please enter name consisting of letters only.");
+    // return false;
+    // }
+     
+    // if(pass=="" || pass==" " || pass.length>15 || pass.length<7)
+    // {
+    // alert("Password should be between 7-15 characters and contain atleast 1 numeric digit and a special character.");
+    // return false;
+    // }
+    // if(pass!=copass)
+    // {
+    // alert("Passwords do not match.");
+    // return false;
+    // }
+    // if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)))  
+ //    {  
+ //    alert("You have entered an invalid email address!")  
+ //    return false;
+    // }
+    // if(phone=="" || phone==" " || phone.length<10 || phone.length>10 || isNaN(phone))
+    // {
+ //                alert("Please enter valid contact number");
+ //                return false;
+    // }
+//     $.ajax({  
+//         type: "POST",  
+//         url: "/signup",  
+//         data: {'firstname': x,'lastname': y,'email': email,'password': pass,'city': 'noida','phoneno': phone},  
+//         success: function(dataString) {        
+//             alert("OKKKKK");  
+//             console.log('hello', dataString.response); 
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             console.log(errorThrown);
+//            alert('error ' + textStatus + " " , errorThrown.message);
+//     }  
+//     });
+//     return false;
+// }
+function validateform(){
+    var x= document.forms["f1"]["fname"].value;
+    var y= document.forms["f1"]["lname"].value;
+    var letters=/^[A-Za-z]+$/;
+    var pass= document.forms["f1"]["pass"].value;
+    var pd=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+    var copass=document.forms["f1"]["cpass"].value;
+    var email= document.forms["f1"]["email"].value;
+    var phone=document.forms["f1"]["contact"].value;
+    var city=document.forms["f1"]["city"].value;
+
+    $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/signup",  
+        data: {'fname': x,'lname': y,'email': email,'pass': pass,'city': city,'contact': phone},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                    top.location.href = '/portal';
+                }
+                else{
+                    alert("User Already Registered");
+                }            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+    return false;
+}
+</script>
+ <script type="text/javascript" src="js/script.js"></script>
+    <script>
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#uploaded_img').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
+
+</script>
+   
+</body>
+
+</html>

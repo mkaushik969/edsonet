@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/account.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-Question Portal</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var obj;
+    function getinstructions()
+    {
+
+    var testid = '<%=tid %>' ;
+            $.ajax({  
+        type: "POST",  
+        url: "http://localhost:3000/getinstructions",  
+        data: {tid:testid},  
+        success: function(dataString) {        
+//            alert("OKKKKK");  
+            console.log('hello:', dataString); 
+                if(dataString.response=="success"){
+                   // top.location.href = '/portal';
+                   
+                   var subject=dataString.subject.name;
+                   var difficulty=dataString.test.level;
+                   var username=dataString.user.firstname;
+                   var timer=dataString.test.timer;
+                   var d;
+                   if(difficulty==1)
+                   {
+                    d="EASY";
+                   }
+                   if(difficulty==2)
+                   {
+                    d="MEDIUM";
+                   }                   
+                   if(difficulty==3)
+                   {
+                    d="HARD";
+                   }
+                   document.getElementById("user").textContent=" "+username;
+                   document.getElementById("tym").textContent=" "+timer+" min";
+                   document.getElementById("sub").textContent=" "+subject; 
+                   document.getElementById("dif").textContent=" "+d;                  
+
+
+                }
+                else{
+                    alert("User Already Registered");
+                }
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('errmsg:'+errorThrown.message);
+           alert('No Internet Connection');
+    }  
+    });
+    }
+</script>
+</head>
+
+<body onload="getinstructions()">
+<div class="preloader"></div>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="irs-header-top-col irs-center-2">
+                            <p style="color:white;font-family: 'Times New Roman';font-size:50px"> EDSONET</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-md-offset-5 col-sm-4">
+                        <div class="irs-header-top-col text-right irs-center-2">
+                            <div class="irs-social text-right irs-center-2">
+                                <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                                <a href="#"><i class="icofont icofont-social-twitter"></i></a>
+                                <a href="#"><i class="icofont icofont-social-vimeo"></i></a>
+                                <a href="#"><i class="icofont icofont-brand-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+
+
+    </header>
+    <!-- Main Header end -->
+
+    
+
+    <!-- Account start -->
+    <section class="irs-account-field">
+    <div class="container">
+
+    <h1 style="color:#228B22;font-size:40px;"><center><u><b> INSTRUCTIONS</b></u></center></h1>
+    <br>
+    <div id="ins">
+    <ul>
+    <li><i class="fa fa-check" aria-hidden="true"> The test is created by <span id="user"></span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Time allowed for exam:<span id="tym"></span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Class :<span id="cls"> GATE</span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Branch :<span id="crse"> CS & IT</span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Subject : <span id="sub"></span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Difficulty :<span id="dif"></span></i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Use of calculator and mobile phones is prohibited.</i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> There are the 10 multiple choice questions.</i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Each question carries 1 mark.</i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> There is no negative marking.</i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Multiple choice questions with only ONE valid answer.</i></li>
+    <li><i class="fa fa-check" aria-hidden="true"> Your score and ratings will be displayed at the end of the test!</i></li>
+    
+    </ul>
+    <br><br>
+    <center>
+    <form id="insform" class="form-horizontal" name="f1" action="/test" method="post">
+        <input type="submit" name="submit" value="Launch Test" class="btn btn-default">
+        <input type="hidden" name="tid" value="<%=tid %>">
+    </form>
+    </center>
+    </div>
+        
+    </div>
+       
+    </section>
+    <!-- Account end -->
+
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/index-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:07:22 GMT -->
+</html>

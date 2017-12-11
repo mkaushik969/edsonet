@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/account.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:08:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link href="images/apple-icon.png" rel="icon" type="image/png">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>EDSONET-Question Portal</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#selct1").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value"); 
+            if(optionValue=="mains"){ 
+                $("#gate").hide();           
+                $("#mains").show();
+              
+            }
+
+            
+            if(optionValue=="gate"){
+              $("#mains").hide();
+               $("#gate").show();
+              
+            }
+        });
+    }).change();
+});
+</script>
+
+</head>
+
+<body>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#selct11").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue1 = $(this).attr("value");
+            if(optionValue1=="cs")
+            {
+              $("#civil").hide();
+              $("#cs").show();
+            }
+            else if(optionValue1=="civil")
+            {
+              $("#cs").hide();
+              $("#civil").show();
+            }
+
+          });
+      }).change();
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#selct111").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue1 = $(this).attr("value");
+            if(optionValue1=="phy")
+            {
+              $("#chem").hide();
+              $("#maths").hide();
+              $("#phy").show();
+              
+            }
+            else if(optionValue1=="chem")
+            {
+              $("#chem").show();
+              $("#maths").hide();
+              $("#phy").hide();
+            }
+            else  if(optionValue1=="maths")
+            {
+                $("#chem").hide();
+                $("#phy").hide();
+                $("#maths").show();
+            }
+
+          });
+      }).change();
+  });
+</script>
+
+    <div class="preloader"></div>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="irs-header-top-col irs-center-2">
+                            <p style="color:white;font-family: 'Times New Roman';font-size:50px"> EDSONET</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-md-offset-5 col-sm-4">
+                        <div class="irs-header-top-col text-right irs-center-2">
+                            <div class="irs-social text-right irs-center-2">
+                                <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                                <a href="#"><i class="icofont icofont-social-twitter"></i></a>
+                                <a href="#"><i class="icofont icofont-social-vimeo"></i></a>
+                                <a href="#"><i class="icofont icofont-brand-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+
+
+    </header>
+    <!-- Main Header end -->
+
+    
+
+    <!-- Account start -->
+    <section class="irs-account-field">
+    <div class="container">
+
+    <h1 style="color:#228B22;font-size:40px;"><center><u><b> UPLOAD QUESTION FORM</b></u></center></h1>
+    <br><br>
+
+        <form id="Qform" class="form-horizontal" name="f1" encType="multipart/form-data" action="/uploadQ" method="post">
+        <center>
+          <div class="row">
+          <div class="col-sm-6">        
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Question :</label>
+                        <div class="col-sm-8">
+                        <textarea name="ques" cols="40" rows="3" placeholder="Enter Question" wrap="soft" style="resize: none;"></textarea>
+                        </div>
+                        </div>
+                   </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Diagram :</label>
+                        <div class="col-sm-8">
+                        <p><a href="https://www.draw.io/">Draw question related diagram here...</a></p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                     <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Select File to Upload:</label>
+                        <div class="col-sm-8">
+                        <div align="left"><input type="file" name="QImage" accept="image/x-png,image/jpeg" />
+                        </div>
+                        </div>
+                        </div>
+                   </div>
+                    <div class="col-sm-12">
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Option 1:</label>
+                        <div class="col-sm-5">
+                        <input type="text" placeholder="Enter Option 1" name="opt1" class="form-control" size="80%">
+                        </div>
+                        <div class="col-sm-3">
+                        <div align="right"><input type="file" name="OImage1" accept="image/x-png,image/jpeg" />
+                        </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Option 2:</label>
+                        <div class="col-sm-5">
+                        <input type="text" placeholder="Enter Option 2" name="opt2" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                        <div align="right"><input type="file" name="OImage2" accept="image/x-png,image/jpeg" /></div>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Option 3:</label>
+                        <div class="col-sm-5">
+                        <input type="text" placeholder="Enter Option 3" name="opt3" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                        <div align="right"><input type="file" name="OImage3" accept="image/x-png,image/jpeg" /></div>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Option 4:</label>
+                        <div class="col-sm-5">
+                        <input type="text" placeholder="Enter Option 4" name="opt4" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                        <div align="right"><input type="file" name="OImage4" accept="image/x-png,image/jpeg" /></div>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Correct Answer :</label>
+                        <div class="col-sm-8">
+                        <select id="selctt" class="form-control" name="correct">
+                        <option>Select</option>
+                        <option value="opt1">Option 1</option>
+                        <option value="opt2">Option 2</option>
+                        <option value="opt3">Option 3</option>
+                        <option value="opt4">Option 4</option>
+                        </select>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="control-label col-sm-3">Explanation :</label>
+                        <div class="col-sm-8">
+                        <textarea name="exp" cols="100" rows="3" placeholder="Enter Question" wrap="soft" style="resize: none;"></textarea>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Class :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control">
+                        <option>Select</option>
+                        <option value="gate">Gate</option>
+                        <option value="mains">JEE Mains</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="gate" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct11" class="control-label col-sm-3">Course :</label>
+                        <div class="col-sm-8">
+                        <select id="selct11" class="form-control">
+                        <option>Select</option>
+                        <option value="cs">CSE & IT</option>
+                        <option value="civil">Civil</option>
+                        <option vlaue="ece">Electronics and Communication</option>
+                        <option value="biotech">Biotechnology</option>
+                        <option value="mechanical">Mechnical Engg</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12" id="mains" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Course :</label>
+                        <div class="col-sm-8">
+                        <select id="selct111" class="form-control">
+                        <option>Select</option>
+                        <option value="maths">Maths</option>
+                        <option value="chem">Chemistry</option>
+                        <option value="phy">Physics</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12" id="cs" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">Computer Networks</option>
+                        <option value="2">Data Structures</option>
+                        <option value="3">Maths</option>
+                        <option value="4">Computer Organization & Architecture</option>
+                        <option value="5">Operating Systems</option>
+                        <option value="6">DataBase Systems</option>
+                        <option value="7">Programming</option>
+                        <option value="8">Compiler</option>
+                        <option value="9">General English and Aptitude</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="phy" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">Properties of Matter and Fluid Mechanics</option>
+                        <option value="2">Electrostatics</option>
+                        <option value="3">Semiconductors and Communication System</option>
+                        <option value="4">Electromagnetic Induction & Alternating Current</option>
+                        <option value="5">Ray Optics</option>
+                        <option value="6">Magnetic Effects of Current</option>
+                        <option value="7">Laws of Thermodynamics</option>
+                        <option value="8">Current Electricity</option>
+                        <option value="9">Atomic Structure in Modern Physics</option>
+                        </select>
+                        </div>
+                    </div>
+                  </div>
+
+
+                
+
+                <div class="col-sm-12" id="chem" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">p , d and f Block Elements</option>
+                        <option value="2">Coordination Compuounds</option>
+                        <option value="3">Biomolecules and Polymers</option>
+                        <option value="4">Chemical Bonding and Molecular Structure</option>
+                        <option value="5">ElectroChemistry</option>
+                        <option value="6">Chemical Kinetics</option>
+                        <option value="7">Atomic Structure</option>
+                        <option value="8">s-block Elements ( Alkali and Alkaline earth Metals) and Hydrogen</option>
+                        <option value="9">Alkanes , Alkenes and Alkynes(Hydrocarbons)</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-12" id="maths" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">Trigonometrical Ratios, Functions and Identities</option>
+                        <option value="2">Sequences and Series (Progressions)</option>
+                        <option value="3">Definite and Indefinite Integration</option>
+                        <option value="4">Chemical Bonding and Molecular Structure</option>
+                        <option value="5">Circle,Parabola</option>
+                        <option value="6">Binomial Theorem</option>
+                        <option value="7">Permutation and Combination</option>
+                        <option value="8">Vector</option>
+                        <option value="9">Quadratic Equations</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+
+
+                
+
+
+
+
+
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="selctt1" class="control-label col-sm-3">Difficulty :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="level">
+                        <option >Select</option>
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-sm-12">
+                        <div class="form-group">
+                        <label class="col-sm-offset-3 col-sm-8">
+                            <input type="submit" value="Submit" name="submit" class="btn btn-default">
+                        </label>
+                        </div>
+                </div>
+                
+                </center>
+
+
+        </form>
+
+    </div>
+       
+    </section>
+    <!-- Account end -->
+
+   <!-- Footer start -->
+  <!--  <footer class="irs-footer-field">
+        
+    </footer> -->
+    <!-- Footer end -->
+
+  <!--  <section class="irs-copyright-field">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="irs-copyright">
+                        <p>Copyright© 2017. Design by <a href="https://themeforest.net/user/irs_soft">irs_soft</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- script start from here -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dropdownhover.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+    <script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/stellar.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+    <script type="text/javascript" src="js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+    <!-- Funfact START -->
+ <!--   <script type="text/javascript">
+        $(document).ready(function($) {
+            $('.start-count').each(function() {
+                var $this = $(this);
+                $this.data('target', parseInt($this.html()));
+                $this.data('counted', false);
+                $this.html('0');
+            });
+
+            $(window).bind('scroll', function() {
+                var speed = 3000;
+                $('.start-count').each(function() {
+                    var $this = $(this);
+                    if (!$this.data('counted') && $(window).scrollTop() + $(window).height() >= $this.offset().top) {
+                        $this.data('counted', true);
+                        $this.animate({
+                            dummy: 1
+                        }, {
+                            duration: speed,
+                            step: function(now) {
+                                var $this = $(this);
+                                var val = Math.round($this.data('target') * now);
+                                $this.html(val);
+                                if (0 < $this.parent('.value').length) {
+                                    $this.parent('.value').css('width', val + '%');
+                                }
+                            }
+                        });
+                    }
+                });
+            }).triggerHandler('scroll');
+        });
+    </script>-->
+
+</body>
+
+
+<!-- Mirrored from irsfoundation.com/tf/templates/EducationPark/index-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 17:07:22 GMT -->
+</html>
