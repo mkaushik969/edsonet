@@ -1,10 +1,10 @@
 {
   
   "neo4j": {
-    "bolt": "bolt://localhost",
+    "bolt": "bolt://hobby-iooilclecffdgbkeagcidial.dbs.graphenedb.com:24786",
     "auth": {
-      "user": "neo4j",
-      "pass": "manask969"
+      "user": "user",
+      "pass": "b.U48suXHJmTKS.5Ow7RG0qrYxUv3Uu"
     }
   },
   "do": {
