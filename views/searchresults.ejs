@@ -35,7 +35,7 @@ function getuser()
 
     $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getusersearchresults",  
+        url: "http://13.127.31.254:3000/getusersearchresults",  
         data: {txt:query},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -97,7 +97,7 @@ function getposts()
 
     $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getpostsearchresults",  
+        url: "http://13.127.31.254:3000/getpostsearchresults",  
         data: {txt:query},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -355,7 +355,7 @@ function logout()
 {
         $.ajax({  
         type: "GET",  
-        url: "http://localhost:3000/userlogout",
+        url: "http://13.127.31.254:3000/userlogout",
         data: {},  
         success: function(dataString) {        
 //            alert("OKKKKK");  

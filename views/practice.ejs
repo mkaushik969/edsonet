@@ -51,7 +51,7 @@
     var tagid = '<%=tagid %>' ;
      $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getpractice",  
+        url: "http://13.127.31.254:3000/getpractice",  
         data: { 'tagid':tagid},  
         success: function(dataString) {        
             console.log('hello:', dataString); 

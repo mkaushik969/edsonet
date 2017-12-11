@@ -43,7 +43,7 @@ var myemail = '<%=email %>' ;
 
         $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getprogress",  
+        url: "http://13.127.31.254:3000/getprogress",  
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -133,13 +133,13 @@ var myemail = '<%=email %>' ;
       }
 
                 else{
-                    alert("User Already Registered");
+//                    alert("User Already Registered");
                 }
             
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+//           alert('No Internet Connection');
     }  
     });
 }
@@ -154,7 +154,7 @@ var myemail = '<%=email %>' ;
 var myemail = '<%=email %>' ;
         $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getprogress",  
+        url: "http://13.127.31.254:3000/getprogress",  
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -228,13 +228,13 @@ var myemail = '<%=email %>' ;
 
                 }
                 else{
-                    alert("User Already Registered");
+ //                   alert("User Already Registered");
                 }
             
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+ //          alert('No Internet Connection');
     }  
     });
 
@@ -252,7 +252,7 @@ var myemail = '<%=email %>' ;
 
     $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/gettimeline",  
+        url: "http://13.127.31.254:3000/gettimeline",  
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -387,13 +387,13 @@ var myemail = '<%=email %>' ;
 				   } 
                 }
                 else{
-                    alert("error");
+                    console.log("error");
                 }
             
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+   //        alert('No Internet Connection');
     }  
     });
 
@@ -482,7 +482,7 @@ function getsuggestions()
 {
     $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getusersuggestions",
+        url: "http://13.127.31.254:3000/getusersuggestions",
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -516,12 +516,12 @@ function getsuggestions()
                      }
                 }
                 else{
-                    alert("Error4");
+                    console.log("Error4");
                 }            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+  //         alert('No Internet Connection');
     }  
     });
 }
@@ -530,7 +530,7 @@ function getprofile()
 {
      $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getprofile",
+        url: "http://13.127.31.254:3000/getprofile",
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -540,6 +540,7 @@ function getprofile()
                     d=dataString;
                     document.getElementById("names").textContent=d.data.firstname;
                     var imgs1=new Image();
+
             if(d.data.image)
             {
             imgs1.src=d.data.image;
@@ -560,12 +561,12 @@ function getprofile()
          
                 }
                 else{
-                    alert("Error1");
+                    console.log("Error1");
                 }            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+    //       alert('No Internet Connection');
     }  
     });
 }
@@ -575,7 +576,7 @@ function getprofile()
     {
          $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getfollowers",
+        url: "http://13.127.31.254:3000/getfollowers",
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -606,12 +607,12 @@ function getprofile()
          }
                 }
                 else{
-                    alert("Error2");
+                    console.log("Error2");
                 }            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+//           alert('No Internet Connection');
     }  
     });
         
@@ -623,7 +624,7 @@ function getfollowing()
 {
     $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/getfollowing",
+        url: "http://13.127.31.254:3000/getfollowing",
         data: {email:myemail},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -655,12 +656,12 @@ function getfollowing()
                      }
                 }
                 else{
-                    alert("Error3");
+                    console.log("Error3");
                 }            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+   //        alert('No Internet Connection');
     }  
     });
 }
@@ -717,7 +718,7 @@ function viewprofile(x,y)
 
 function viewprofilerequest(e)
 {
-    alert(e);
+ //   alert(e);
 }
 
 </script>
@@ -832,7 +833,7 @@ function logout()
 {
         $.ajax({  
         type: "GET",  
-        url: "http://localhost:3000/userlogout",
+        url: "http://13.127.31.254:3000/userlogout",
         data: {},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -841,12 +842,12 @@ function logout()
                     window.location.href = '/home';
                 }
                 else{
-                    alert("Error");
+                    console.log("Error");
                 }            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
+//           alert('No Internet Connection');
     }  
     });
 

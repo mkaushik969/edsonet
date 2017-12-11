@@ -61,7 +61,7 @@ console.log(obj);
 
  $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/submittest",  
+        url: "http://13.127.31.254:3000/submittest",  
         data: obj,  
         success: function(dataString) {        
         console.log('hello:', dataString);
@@ -84,7 +84,7 @@ function getQ(){
  
  $.ajax({  
         type: "POST",  
-        url: "http://localhost:3000/gettest",  
+        url: "http://13.127.31.254:3000/gettest",  
         data: { 'email':email,'tid':tid},  
         success: function(dataString) {        
         console.log('hello:', dataString); 

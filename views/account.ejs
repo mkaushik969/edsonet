@@ -34,9 +34,7 @@
 
     $.ajax({  
         type: "POST",
-        crossDomain: true,
-        beforeSend: setHeader,
-        url: "http://localhost:3000/login",  
+        url: "http://13.127.31.254:3000/login",  
         data: {'email': email,'pass': pass},  
         success: function(dataString) {        
 //            alert("OKKKKK");  
@@ -44,7 +42,7 @@
                 if(dataString.response=="success"){
                     top.location.href = '/timeline';
 //                    alert("success");  
-//                     window.location.href = 'http://localhost:3000/signup';
+//                     window.location.href = 'http://13.127.31.254:3000/signup';
                 }
                 else{
                     alert("Incorrect Email or Password");
