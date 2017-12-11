@@ -93,7 +93,7 @@ router.post('/', function(req, res) {
 	  	exp: req.body.exp,
 	  	correct: req.body.correct+n,
 	  	level: req.body.level,
-	  	tag: req.body.tag
+	  	tag: String(req.body.class+''+req.body.course+''+req.body.tag)
 	  }
 	);
 
