@@ -11,6 +11,10 @@ router.post('/', function(req, res, next) {
 	const driver = neo4j.driver(config.neo4j.bolt, neo4j.auth.basic(config.neo4j.auth.user, config.neo4j.auth.pass));
 	const session = driver.session();
 	
+	var course=req.body.course[parseInt(req.body.clss)-1];
+	var subject=req.body.tag[parseInt(course)-1];
+	var tg=req.body.clss+''+String(course)+''+String(subject);
+
 	var d = new Date();
 	var n = d.getTime();
 	const resultPromise = session.run('MATCH (u:User) WHERE u.email = $email '+
@@ -19,8 +23,8 @@ router.post('/', function(req, res, next) {
 	  {
 	  	tid: 't'+String(n),
 	  	email: req.session.email,
-	  	tag: req.body.subject,
-	  	course: req.body.course,
+	  	tag: tg,
+	  	course: course,
 	  	clss: req.body.clss,
 	  	level: req.body.level,
 	  	timer: req.body.timer
@@ -56,18 +60,19 @@ router.post('/', function(req, res, next) {
 
 //	  const singleRecord = result.records[0];
 //	  const node = singleRecord.get(0);
-	  res.status(200).json({"response" :"success"});
+//	  res.status(200).json({"response" :"success"});
+	  res.redirect("timeline");
 	  driver.close();
 	})
 	.catch((err) => {
 	console.log("failure:"+err);
-	  res.status(200).json({"response" :"failure"});
+	  res.render('createtest',{"response" :"failure"});
 	})
 
 	})
 	.catch((err) => {
 	console.log("failure:"+err);
-		res.status(200).json({"response" : "failure"});
+	  res.render('createtest',{"response" :"failure"});
 	})
 });
 
