@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (t:Test{tid:$tid})<-[:CONDUCTS]-(u:User) MATCH (tag:Tag) where tag.tagid=t.tag return t,u,tag',
+		'MATCH (t:Test{tid:$tid})<-[:CONDUCTS]-(u:User) MATCH (cl:Class)-[:HAS_COURSE]->(co:Course)-[:HAS_SUBJECT]->(tag:Tag) where cl.cid=t.class and co.cid=t.course and tag.tagid=t.tag return t,u,cl,co,tag',
 	  {
 	  	tid: req.body.tid
 	  }
@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
 	resultPromise.then(result => {
 	  session.close();
 //data:result.records[0]._fields[0].properties
+//	  res.status(200).json({"response" :"success",result});
 	  res.status(200).json({"response" :"success",test:result.records[0]._fields[0].properties,user:result.records[0]._fields[1].properties,subject:result.records[0]._fields[2].properties});
    	console.log("Success");
 

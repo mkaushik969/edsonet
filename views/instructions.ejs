@@ -42,7 +42,8 @@ var obj;
             console.log('hello:', dataString); 
                 if(dataString.response=="success"){
                    // top.location.href = '/portal';
-                   
+                   var clss=dataString.class.name;
+                   var course=dataString.course.name;                   
                    var subject=dataString.subject.name;
                    var difficulty=dataString.test.level;
                    var username=dataString.user.firstname;
@@ -62,6 +63,8 @@ var obj;
                    }
                    document.getElementById("user").textContent=" "+username;
                    document.getElementById("tym").textContent=" "+timer+" min";
+                   document.getElementById("cls").textContent=" "+clss; 
+                   document.getElementById("crse").textContent=" "+course; 
                    document.getElementById("sub").textContent=" "+subject; 
                    document.getElementById("dif").textContent=" "+d;                  
                 }
