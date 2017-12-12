@@ -49,10 +49,12 @@
     function getques(){
 
     var tagid = '<%=tagid %>' ;
+    var clss = '<%=class %>' ;
+    var course = '<%=course %>' ;
      $.ajax({  
         type: "POST",  
         url: "http://13.127.76.231:3000/getpractice",  
-        data: { 'tagid':tagid,'page':pageno},  
+        data: { 'class':clss,'course':course,'tagid':tagid,'page':pageno},  
         success: function(dataString) {        
             console.log('hello:', dataString); 
           if(dataString.response=="success"){

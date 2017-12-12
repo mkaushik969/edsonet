@@ -50,9 +50,9 @@
     form.submit();
 	}
 
-    function getq(x)
+    function getq(x,y,z)
     {
-        makepostrequest("/practice",{tagid:x},"post");
+        makepostrequest("/practice",{class:x,course:y,tagid:z},"post");
     }
 
 </script>
@@ -181,15 +181,15 @@
                             <h4><a>CS and IT</a></h4>
                             <div id="list">
                             <ul algin="left">
-						    <li> <a onclick='getq("111")'>Computer Networks</a></li>
-						    <li> <a onclick='getq("112")'>Data Structures</a></li>
-						    <li> <a onclick='getq("113")'>Maths</a></li>
-						    <li> <a onclick='getq("114")'>Computer Organization & Architecture</a></li>
-						    <li> <a onclick='getq("115")'>Operating Systems</a></li>
-						    <li> <a onclick='getq("116")'>Database Systems</a></li>
-						    <li> <a onclick='getq("117")'>Programming</a></li>
-						    <li> <a onclick='getq("118")'>Compiler Design</a></li>
-						    <li> <a onclick='getq("119")'>General English and Aptitude</a></li>
+						    <li> <a onclick='getq("1","1","1")'>Computer Networks</a></li>
+						    <li> <a onclick='getq("1","1","2")'>Data Structures</a></li>
+						    <li> <a onclick='getq("1","1","3")'>Maths</a></li>
+						    <li> <a onclick='getq("1","1","4")'>Computer Organization & Architecture</a></li>
+						    <li> <a onclick='getq("1","1","5")'>Operating Systems</a></li>
+						    <li> <a onclick='getq("1","1","6")'>Database Systems</a></li>
+						    <li> <a onclick='getq("1","1","7")'>Programming</a></li>
+						    <li> <a onclick='getq("1","1","8")'>Compiler Design</a></li>
+						    <li> <a onclick='getq("1","1","9")'>General English and Aptitude</a></li>
 						    </ul>
 						    </div>
                         </div>
