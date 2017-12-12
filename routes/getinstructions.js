@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
 	  session.close();
 //data:result.records[0]._fields[0].properties
 //	  res.status(200).json({"response" :"success",result});
-	  res.status(200).json({"response" :"success",test:result.records[0]._fields[0].properties,user:result.records[0]._fields[1].properties,subject:result.records[0]._fields[2].properties});
+	  res.status(200).json({"response" :"success",test:result.records[0]._fields[0].properties,user:result.records[0]._fields[1].properties,class:result.records[0]._fields[2].properties,course:result.records[0]._fields[3].properties,subject:result.records[0]._fields[4].properties});
    	console.log("Success");
 
 	  driver.close();
