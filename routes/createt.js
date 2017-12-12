@@ -14,12 +14,14 @@ router.post('/', function(req, res, next) {
 	var d = new Date();
 	var n = d.getTime();
 	const resultPromise = session.run('MATCH (u:User) WHERE u.email = $email '+
-		'CREATE (t:Test{tid:$tid,email: $email,tag: $tag,level: $level,timer: $timer}) '+
+		'CREATE (t:Test{tid:$tid,email:$email,tag:$tag,class:$clss,course:$course,level:$level,timer:$timer}) '+
 		'CREATE (u)-[:CONDUCTS]->(t) RETURN t',
 	  {
 	  	tid: 't'+String(n),
 	  	email: req.session.email,
 	  	tag: req.body.subject,
+	  	course: req.body.course,
+	  	clss: req.body.clss,
 	  	level: req.body.level,
 	  	timer: req.body.timer
 	  }

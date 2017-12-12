@@ -25,22 +25,20 @@
 $(document).ready(function(){
     $("#selct1").change(function(){
         $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-      
-
-            if(optionValue=="mains"){            
+            var optionValue = $(this).attr("value"); 
+            if(optionValue==2){ 
+                $("#gate").hide();           
                 $("#mains").show();
-                  $("#gate").hide();
+              
             }
 
-            
-            if(optionValue=="gate"){
+            if(optionValue==1){
+              $("#mains").hide();
                $("#gate").show();
-               $("#mains").hide();
+              
             }
         });
     }).change();
-   
 });
 </script>
 
@@ -53,13 +51,45 @@ $(document).ready(function(){
     $("#selct11").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue1 = $(this).attr("value");
-            if(optionValue1=="cs")
+            if(optionValue1==1)
             {
+              $("#civil").hide();
               $("#cs").show();
             }
-            else
+            else if(optionValue1==2)
             {
               $("#cs").hide();
+              $("#civil").show();
+            }
+
+          });
+      }).change();
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#selct111").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue1 = $(this).attr("value");
+            if(optionValue1==3)
+            {
+              $("#chem").hide();
+              $("#maths").hide();
+              $("#phy").show();
+              
+            }
+            else if(optionValue1==2)
+            {
+              $("#chem").show();
+              $("#maths").hide();
+              $("#phy").hide();
+            }
+            else  if(optionValue1==1)
+            {
+                $("#chem").hide();
+                $("#phy").hide();
+                $("#maths").show();
             }
 
           });
@@ -105,10 +135,10 @@ $(document).ready(function(){
                     <div class="form-group">
                         <label for="selct1" class="control-label col-sm-3">Class :</label>
                         <div class="col-sm-8">
-                        <select id="selct1" class="form-control">
+                        <select id="selct1" class="form-control" name="clss">
                         <option>Select</option>
-                        <option value="gate">Gate</option>
-                        <option value="mains">JEE Mains</option>
+                        <option value="1">Gate</option>
+                        <option value="2">JEE Mains</option>
                         </select>
                         </div>
                     </div>
@@ -118,13 +148,13 @@ $(document).ready(function(){
                     <div class="form-group">
                         <label for="selct11" class="control-label col-sm-3">Course :</label>
                         <div class="col-sm-8">
-                        <select id="selct11" class="form-control">
+                        <select id="selct11" class="form-control" name="course">
                         <option>Select</option>
-                        <option value="cs">CSE & IT</option>
-                        <option>Civil</option>
-                        <option>Electronics and Communication</option>
-                        <option>Biotechnology</option>
-                        <option>Mechnical Engg</option>
+                        <option value="1">CSE & IT</option>
+                        <option value="2">Civil</option>
+                        <option value="3">Electronics and Communication</option>
+                        <option value="4">Biotechnology</option>
+                        <option value="5">Mechnical Engg</option>
                         </select>
                         </div>
                     </div>
@@ -136,7 +166,7 @@ $(document).ready(function(){
                     <div class="form-group">
                         <label for="selct11" class="control-label col-sm-3">Course :</label>
                         <div class="col-sm-8">
-                        <select id="selct5" class="form-control">
+                        <select id="selct5" class="form-control" name="course">
                         <option>Select</option>
                         <option>Maths</option>
                         <option>Chemistry</option>
@@ -149,24 +179,86 @@ $(document).ready(function(){
 
                 <div class="col-sm-12" id="cs" style="display: none;">
                     <div class="form-group">
-                        <label for="selct111" class="control-label col-sm-3">Subjects :</label>
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
                         <div class="col-sm-8">
                         <select id="selct1" class="form-control" name="tag">
-                        <option >Select</option>
-                        <option value="111">Computer Networks</option>
-                        <option value="112">Data Structures</option>
-                        <option value="113">Maths</option>
-                        <option value="114">Computer Organization & Architecture</option>
-                        <option value="115">Operating Systems</option>
-                        <option value="116">DataBase Systems</option>
-                        <option value="117">Programming</option>
-                        <option value="118">Compiler</option>
-                        <option value="119">General English and Aptitude</option>
+                        <option>Select</option>
+                        <option value="1">Computer Networks</option>
+                        <option value="2">Data Structures</option>
+                        <option value="3">Maths</option>
+                        <option value="4">Computer Organization & Architecture</option>
+                        <option value="5">Operating Systems</option>
+                        <option value="6">DataBase Systems</option>
+                        <option value="7">Programming</option>
+                        <option value="8">Compiler</option>
+                        <option value="9">General English and Aptitude</option>
                         </select>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-sm-12" id="phy" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">Properties of Matter and Fluid Mechanics</option>
+                        <option value="2">Electrostatics</option>
+                        <option value="3">Semiconductors and Communication System</option>
+                        <option value="4">Electromagnetic Induction & Alternating Current</option>
+                        <option value="5">Ray Optics</option>
+                        <option value="6">Magnetic Effects of Current</option>
+                        <option value="7">Laws of Thermodynamics</option>
+                        <option value="8">Current Electricity</option>
+                        <option value="9">Atomic Structure in Modern Physics</option>
+                        </select>
+                        </div>
+                    </div>
+                  </div>
+
+
+                
+
+                <div class="col-sm-12" id="chem" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">p , d and f Block Elements</option>
+                        <option value="2">Coordination Compuounds</option>
+                        <option value="3">Biomolecules and Polymers</option>
+                        <option value="4">Chemical Bonding and Molecular Structure</option>
+                        <option value="5">ElectroChemistry</option>
+                        <option value="6">Chemical Kinetics</option>
+                        <option value="7">Atomic Structure</option>
+                        <option value="8">s-block Elements ( Alkali and Alkaline earth Metals) and Hydrogen</option>
+                        <option value="9">Alkanes , Alkenes and Alkynes(Hydrocarbons)</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-12" id="maths" style="display: none;">
+                    <div class="form-group">
+                        <label for="selct1" class="control-label col-sm-3">Subjects :</label>
+                        <div class="col-sm-8">
+                        <select id="selct1" class="form-control" name="tag">
+                        <option>Select</option>
+                        <option value="1">Trigonometrical Ratios, Functions and Identities</option>
+                        <option value="2">Sequences and Series (Progressions)</option>
+                        <option value="3">Definite and Indefinite Integration</option>
+                        <option value="4">Chemical Bonding and Molecular Structure</option>
+                        <option value="5">Circle,Parabola</option>
+                        <option value="6">Binomial Theorem</option>
+                        <option value="7">Permutation and Combination</option>
+                        <option value="8">Vector</option>
+                        <option value="9">Quadratic Equations</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>          
 
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -246,29 +338,32 @@ $(document).ready(function(){
 //        alert('yahahahaa');
 //        var clas=document.getElementById("selct1").value;
 //        var crse=document.getElementById("selct11").value;
+        var clss= document.forms["f1"]["clss"].value;
+        var course= document.forms["f1"]["course"].value;
         var sub= document.forms["f1"]["tag"].value;
         var dif= document.forms["f1"]["level"].value;
         var tmr= document.forms["f1"]["timer"].value;
-
-        $.ajax({  
-        type: "POST",  
-        url: "http://13.127.76.231:3000/createt",  
-        data: {'email':'mkaushik969@gmail.com','subject':sub,'level':dif,'timer':tmr},  
-        success: function(dataString) {        
-            console.log('response:', dataString); 
-                if(dataString.response=="success"){
-                    top.location.href = '/timeline';
-                }
-                else{
-                    alert("Submission Failed");
-                }
+        alert(clss+' '+course+' 'sub);
+        
+    //     $.ajax({  
+    //     type: "POST",  
+    //     url: "http://13.127.76.231:3000/createt",  
+    //     data: {'email':'mkaushik969@gmail.com','clss':sub,'course':sub,'subject':sub,'level':dif,'timer':tmr},  
+    //     success: function(dataString) {        
+    //         console.log('response:', dataString); 
+    //             if(dataString.response=="success"){
+    //                 top.location.href = '/timeline';
+    //             }
+    //             else{
+    //                 alert("Submission Failed");
+    //             }
             
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
-    }  
-    });
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //         console.log('errmsg:'+errorThrown.message);
+    //        alert('No Internet Connection');
+    // }  
+    // });
 
     return false;
     }
