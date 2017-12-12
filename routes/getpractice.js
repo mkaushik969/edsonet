@@ -33,13 +33,16 @@ router.post('/', function(req, res, next) {
 		// for (var i = (page-1)*10; i < ((page-1)*10)+10; i++) {
 		//     jsonArr.data.push(result.records[i].get(0).properties);
 		// }
+		for (var i = 0; i < 10; i++) {
+		    jsonArr.data.push(result.records[i].get(0).properties);
+		}
 
 		var ttl=result.records.length/10;
 //	   const node = singleRecord.get(0);
 //	 log.console(singleRecord);
 //	 log.console(node);
-	  res.status(200).json({response:"success",result});
-//	  res.status(200).json({response:"success",data:jsonArr.data,total:ttl});
+//	  res.status(200).json({response:"success",result});
+	  res.status(200).json({response:"success",data:jsonArr.data,total:ttl});
 //	  res.status(200).json({"response" :"success"});
 
 	  driver.close();
