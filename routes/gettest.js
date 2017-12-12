@@ -11,10 +11,9 @@ router.post('/', function(req, res, next) {
 	const driver = neo4j.driver(config.neo4j.bolt, neo4j.auth.basic(config.neo4j.auth.user, config.neo4j.auth.pass));
 	const session = driver.session();
 
-	const resultPromise = session.run(
-		'MATCH(t:Test{tid:$tid})  MATCH(q:Question)<-[:HAS_Q]-(tag:Tag)<-[:HAS_SUBJECT]-(co:Course)<-[:HAS_COURSE]-(cl:Class) where t.tag=tag.tagid and t.course=co.cid and t.class=cl.cid and '+
 //		't.level=q.level '+
-		'return q',
+	const resultPromise = session.run(
+		'MATCH(t:Test{tid:$tid})  MATCH(q:Question)<-[:HAS_Q]-(tag:Tag)<-[:HAS_SUBJECT]-(co:Course)<-[:HAS_COURSE]-(cl:Class) where t.tag=tag.tagid and t.course=co.cid and t.class=cl.cid and return q',
 	  {
 	  	 tid: req.body.tid
 	  	// password: req.body.pass,
