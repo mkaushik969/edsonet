@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
 
 //	   const singleRecord = result.records[0];
 
-	 //   var jsonArr = { data:[] };
+	   var jsonArr = { data:[] };
 	 //   var page=parseInt(req.body.page);
 
 		// for (var i = (page-1)*10; i < ((page-1)*10)+10; i++) {
