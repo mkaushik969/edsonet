@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (u:User)<-[:FOLLOWS]-(u1:User{email:$email}) where u.email<>$email RETURN u',
+		'MATCH (u:User)<-[:FOLLOWS]-(u1:User{email:$email}) where u.email<>$email RETURN u LIMIT 4',
 	  {
 	  	email: req.body.email,
 	  }

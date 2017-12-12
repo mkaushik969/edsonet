@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
 	const resultPromise = session.run(
 		'MATCH (me:User)-[:FOLLOWS]->(myFriend:User)-[:FOLLOWS]->(friendOfFriend:User) '+
 		'WHERE NOT (me)-[:FOLLOWS]->(friendOfFriend:User) '+
-    	'AND me.email = $email return distinct friendOfFriend LIMIT 8',
+    	'AND me.email = $email return distinct friendOfFriend LIMIT 4',
 	  {
 	  	email: req.body.email,
 	  }
@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
 	  else
 	  {
 	  		const resultPromise1 = session.run(
-		'MATCH (u:User) where not u.email=$email return distinct u LIMIT 8',
+		'MATCH (me:User{email:$email})-[:FOLLOWS]->(foll:User) MATCH (u:User) where not u.email=$email and not foll.email=u.email return distinct u LIMIT 4',
 		  {
 		  	email: req.session.email,
 		  }
