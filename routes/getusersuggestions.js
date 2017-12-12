@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 	);
 
 	resultPromise.then(result => {
-	  session.close();
+//	  session.close();
 
 	  for(var i=0;i<result.records.length;i++)
 	  {
