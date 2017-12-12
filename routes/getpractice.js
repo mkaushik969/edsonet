@@ -27,12 +27,12 @@ router.post('/', function(req, res, next) {
 
 //	   const singleRecord = result.records[0];
 
-	   var jsonArr = { data:[] };
-	   var page=parseInt(req.body.page);
+	 //   var jsonArr = { data:[] };
+	 //   var page=parseInt(req.body.page);
 
-		for (var i = (page-1)*10; i < ((page-1)*10)+10; i++) {
-		    jsonArr.data.push(result.records[i].get(0).properties);
-		}
+		// for (var i = (page-1)*10; i < ((page-1)*10)+10; i++) {
+		//     jsonArr.data.push(result.records[i].get(0).properties);
+		// }
 
 		var ttl=result.records.length/10;
 //	   const node = singleRecord.get(0);
