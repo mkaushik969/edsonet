@@ -34,9 +34,10 @@ router.post('/', function(req, res, next) {
 
 	  if(data.length>0)
 	  {
-	   	console.log("Success1");
+	    	console.log("Success1");
 	  	  session.close();
 		  res.status(200).json({"response" :"success",data});
+		  driver.close();
 	  }
 	  else
 	  {
@@ -49,7 +50,7 @@ router.post('/', function(req, res, next) {
 
 
 	  resultPromise1.then(result => {
-	  session.close();
+//	  session.close();
 
    	console.log("Success2");	 
 
@@ -72,7 +73,6 @@ router.post('/', function(req, res, next) {
 
 	  
 	}
-	  driver.close();
 	})
 	.catch((err) => {
 	console.log("failure");
