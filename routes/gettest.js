@@ -12,9 +12,9 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (q:Question{tag:$tag}) return q',
+		'MATCH(t:Test{tid:$tid})  MATCH(q:Question)<-[:HAS_Q]-(tag:Tag)<-[:HAS_SUBJECT]-(co:Course)<-[:HAS_COURSE]-(cl:Class) where t.tag=tag.tagid and t.course=co.cid and t.class=cl.cid and t.level=q.level return q',
 	  {
-	  	 tag: req.body.tagid
+	  	 tid: req.body.tid
 	  	// password: req.body.pass,
 	  }
 	);
@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
 
 	   var jsonArr = { data:[] };
 
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 4; i++) {
 		    jsonArr.data.push(result.records[i].get(0).properties);
 		}
 
