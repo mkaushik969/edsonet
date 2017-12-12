@@ -116,21 +116,23 @@ function getposts()
                    cdate=obj[i].post.cdate;
                    type=obj[i].post.type;
                    uimage=obj[i].user.image;
+                   cdate=new Date(Number(cdate)).toString().substr(3,12);
 
                    if(type==1)
                    {
                     element= '<div class="card-post">'+
                     '<div class="row">'+
                     '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="#" >'+
                                 '<img src=';
                     if(uimage)
                     {
-                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div><br>'+
@@ -144,11 +146,13 @@ function getposts()
                     }
                     else
                     {
-                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div><br>'+
@@ -180,7 +184,10 @@ function getposts()
                             element1=element1+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
                             '</a>'+'</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#" >'+pfname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+'</div>'+ '<div class="row">'+
                     '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
@@ -193,7 +200,10 @@ function getposts()
                         {
             element1=element1+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+   '</a>'+'</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div>'+
