@@ -67,11 +67,12 @@ router.post('/', function(req, res) {
 
 	var course=req.body.course[parseInt(req.body.clss)-1];
 	var subject=req.body.tag[parseInt(course)-1];
+	var tg=req.body.clss+''+String(course)+''+String(subject);
 
-	console.log(req.body.clss+course+subject);
+	console.log(tg);
 
 //		console.log('q'+n);
-		const resultPromise = session.run('MATCH (t:Tag) WHERE t.tagid = $tag '+
+		const resultPromise = session.run('MATCH (cl:Class{cid:$class})-[:HAS_COURSE]->(co:Course{cid:$course})-[:HAS_SUBJECT]->(t:Tag{tagid:$tag}) '+
 			'CREATE (q:Question{qid: $qid,ques: $ques,qimage: $qimage,opt1id: $opt1id,opt1: $opt1,opt1image: $opt1image,opt2id: $opt2id,opt2: $opt2,opt2image: $opt2image,opt3id: $opt3id,opt3: $opt3,opt3image: $opt3image,opt4id: $opt4id,opt4: $opt4,opt4image: $opt4image,exp: $exp,correct: $correct,level: $level,tag: $tag})'+
 			' CREATE (t)-[:HAS_Q]->(q) RETURN q',
 	  {
@@ -98,7 +99,9 @@ router.post('/', function(req, res) {
 	  	exp: req.body.exp,
 	  	correct: req.body.correct+n,
 	  	level: req.body.level,
-	  	tag: req.body.clss+course+subject
+	  	tag: String(subject),
+	  	course: String(course),
+	  	class: String(req.body.clss)
 	  }
 	);
 
