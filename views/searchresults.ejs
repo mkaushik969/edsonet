@@ -53,23 +53,28 @@ function getuser()
 				   	element= '<div class="card-post">'+
                     '<div class="row">'+
                     '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="#">'+
                                 '<img src=';
                     if(uimage)
                     {
                         element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+ '</div>'+
+                             '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#" >'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<h4><b>'+ucity+'</b></h4>'+
                     '</div>'+  '</div><br>'+   '</div>';
                     }
                     else
                     {
                         element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+   '</div>'+
+                        '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="" >'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<h4><b>'+ucity+'</b></h4>'+
                     '</div>'+  '</div><br>'+     '</div>';
                     }
@@ -297,8 +302,8 @@ body {
 
     <!--Header with Nav -->
     <header class="text-right">
-        <form class="text-left search" method="GET">
-            <input name="q" type="text" placeholder="Search..">
+        <form class="text-left search" method="POST" action="/searchresults">
+           <input id="search" name="search" type="text" placeholder="Search..">
         </form>
         <div class="menu-icon">
             <div class="dropdown">

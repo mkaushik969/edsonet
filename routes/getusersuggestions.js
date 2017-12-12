@@ -11,10 +11,12 @@ router.post('/', function(req, res, next) {
 	const driver = neo4j.driver(config.neo4j.bolt, neo4j.auth.basic(config.neo4j.auth.user, config.neo4j.auth.pass));
 	const session = driver.session();
 
+	  var data=[];
+
 	const resultPromise = session.run(
 		'MATCH (me:User)-[:FOLLOWS]->(myFriend:User)-[:FOLLOWS]->(friendOfFriend:User) '+
 		'WHERE NOT (me)-[:FOLLOWS]->(friendOfFriend:User) '+
-    	'AND me.email = $email return distinct friendOfFriend',
+    	'AND me.email = $email return distinct friendOfFriend LIMIT 8',
 	  {
 	  	email: req.body.email,
 	  }
@@ -23,7 +25,35 @@ router.post('/', function(req, res, next) {
 	resultPromise.then(result => {
 	  session.close();
 
-	  var data=[];
+	  for(var i=0;i<result.records.length;i++)
+	  {
+	  const singleRecord = result.records[i];
+	  const node = singleRecord.get(0).properties;
+	  data.push(node);
+	  }
+
+	  if(data.length>0)
+	  {
+	   	console.log("Success1");
+	  	  session.close();
+		  res.status(200).json({"response" :"success",data});
+	  }
+	  else
+	  {
+	  		const resultPromise1 = session.run(
+		'MATCH (u:User) where not u.email=$email return distinct u LIMIT 8',
+		  {
+		  	email: req.session.email,
+		  }
+		);
+
+
+	  resultPromise1.then(result => {
+	  session.close();
+
+   	console.log("Success2");	 
+
+	  data=[];
 	  for(var i=0;i<result.records.length;i++)
 	  {
 	  const singleRecord = result.records[i];
@@ -32,8 +62,16 @@ router.post('/', function(req, res, next) {
 	  }
 
 	  res.status(200).json({"response" :"success",data});
-   	console.log("Success");
 
+	  driver.close();
+	})
+	.catch((err) => {
+	console.log("failure:"+err);
+		res.status(200).json({"response" : "failure"});
+	})
+
+	  
+	}
 	  driver.close();
 	})
 	.catch((err) => {
