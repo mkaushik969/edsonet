@@ -31,7 +31,22 @@
         {
     var pass= document.forms["f2"]["pass"].value;
     var email= document.forms["f2"]["email"].value;
-
+    
+    $("#demail").hide();
+    $("#dpass").hide();
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)))
+    {
+        $("#demail").show();
+        return false;
+    }
+    else if(pass=="" || pass==" " || pass.length<7 || pass.length>15)
+    {
+        $("#dpass").show();
+        return false;
+    }
+    else
+    {
+        
     $.ajax({  
         type: "POST",
         url: "http://13.127.31.254:3000/login",  
@@ -55,6 +70,7 @@
     }  
     });
     return false;
+    }
 }
     </script>
 </head>
@@ -131,9 +147,9 @@
                                          <li class="dropdown active">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social <i class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="/account1">Login</a>
+                                                <li><a href="/account">Login</a>
                                                 </li>
-                                                <li><a href="/account">Sign Up</a>
+                                                <li><a href="/createaccount">Sign Up</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -174,6 +190,7 @@
                         <label class="control-label col-sm-3">Email</label>
                         <div class="col-sm-8">
                         <input type="email" placeholder="Enter Email" name="email" class="form-control">
+                        <h6 style="color:red;display: none;" id="demail">Please enter a valid email.</h6>
                         </div>
                         </div>
 
@@ -181,6 +198,7 @@
                         <label class="control-label col-sm-3">Password</label>
                         <div class="col-sm-8">
                         <input type="password" placeholder="Enter password" name="pass" class="form-control">
+                        <h6 style="color:red;display: none;" id="dpass">Password Can't be left blank.</h6>
                         </div>
                         </div>
                         

@@ -824,6 +824,18 @@ function viewprofilerequest(e)
     var response = '<%=response %>' ;
 //    alert(response);
 
+function validatePost()
+{
+    $("#dpost").hide();
+    var post=document.getElementById("posts1").value;
+    if(post=="" || post==" ")
+    {
+        $("#dpost").show();
+        return false;
+    }
+    return true;
+}
+
 function ongateclick()
 {
     window.location.href="/gate";
@@ -887,10 +899,11 @@ function closeNav2() {
             <div id="posts-container" class="container-fluid container-posts" >
 
            <div class="card-post">
-                    <form name="f1" name="createpost" encType="multipart/form-data" action="/timeline" method="post">
+                    <form name="f1" name="createpost" encType="multipart/form-data" action="/timeline" method="post" onsubmit="return validatePost()">
                     <p style="font-size: 20px;"> Create a post....</p>
                     <div>
-                    <textarea rows="5" cols="93" placeholder="Write your Post....." name="msg" wrap="soft" style="resize: none;overflow: hidden;"></textarea>
+                    <textarea rows="5" cols="107" placeholder="Write your Post....." name="msg" wrap="soft" id="posts1" style="resize: none;overflow: hidden;"></textarea>
+                    <h6 id="dpost" style="display: none;color: red;">Post can't be left blank.</h6>
                     </div>
                     <br>
                     <div align="right">

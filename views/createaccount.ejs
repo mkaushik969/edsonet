@@ -137,17 +137,19 @@
                     </div>     
 
                     <div style="padding-top:30px" class="panel-body">
-                    <form id="form1" name="f1" class="form-horizontal" encType="multipart/form-data" action="/signup" method="post">
+                    <form id="form1" name="f1" class="form-horizontal" onsubmit="return validateform()" encType="multipart/form-data" action="/signup" method="post">
                         <div class="form-group">
                         <label class="control-label col-sm-3">First Name</label>
                         <div class="col-sm-8">
                         <input type="text" placeholder="First Name" name="fname" class="form-control">
+                        <h6 id="dfname" style="color:red;display: none;">Please enter first name consisting of letters only.</h6>
                         </div>
                         </div>
                          <div class="form-group">
                         <label class="control-label col-sm-3">Last Name</label>
                         <div class="col-sm-8">
                         <input type="text" placeholder="Last Name" name="lname" class="form-control">
+                        <h6 id="dlname" style="color:red;display: none;">Please enter last name consisting of letters only.</h6>
                         </div>
                         </div>
 
@@ -155,6 +157,7 @@
                         <label class="control-label col-sm-3">Password</label>
                         <div class="col-sm-8">
                         <input type="password" placeholder="Enter password" name="pass" class="form-control">
+                        <h6 id="dpass" style="color:red;display: none;">Password should be between 7-15 characters and contain atleast 1 numeric digit and a special character.</h6>
                         </div>
                         </div>
 
@@ -162,6 +165,7 @@
                         <label class="control-label col-sm-3">Confirm Password</label>
                         <div class="col-sm-8">
                         <input type="password" placeholder="Re-enter password" name="cpass" class="form-control">
+                        <h6 id="dcopass" style="color:red;display: none;">Passwords do not match.</h6>
                         </div>
                         </div>
 
@@ -169,6 +173,7 @@
                         <label class="control-label col-sm-3" for="email">Email</label>
                         <div class="col-sm-8">
                         <input type="email" placeholder="Email" name="email" class="form-control">
+                        <h6 id="demail" style="color:red;display: none;">You have entered an invalid email address!</h6>
                         </div>
                         </div>
                         
@@ -176,6 +181,7 @@
                         <label class="control-label col-sm-3" for="contact">Contact</label>
                         <div class="col-sm-8">
                         <input type="text" placeholder="Phone Number" name="contact" class="form-control">
+                        <h6 id="dphn" style="color:red;display: none;">Please enter valid contact number.</h6>
                         </div>
                         </div>
 
@@ -183,6 +189,7 @@
                         <label class="control-label col-sm-3" for="institution">Institution</label>
                         <div class="col-sm-8">
                         <input type="text" placeholder="Institution" name="ins" class="form-control">
+                        <h6 id="dins" style="color:red;display: none;">Institute Can't be left blank.</h6>
                         </div>
                         </div>
 
@@ -191,6 +198,7 @@
                         <label class="control-label col-sm-3">City</label>
                         <div class="col-sm-8">
                         <input type="text" placeholder="Enter City Name" name="city" class="form-control">
+                        <h6 id="dcity" style="color:red;display: none;">City can't be left blank.</h6>
                         </div>
                         </div>
 
@@ -313,27 +321,58 @@ function validateform(){
     var email= document.forms["f1"]["email"].value;
     var phone=document.forms["f1"]["contact"].value;
     var city=document.forms["f1"]["city"].value;
+    var ins=document.forms["f1"]["ins"].value;
 
-    $.ajax({  
-        type: "POST",  
-        url: "http://13.127.31.254:3000/signup",  
-        data: {'fname': x,'lname': y,'email': email,'pass': pass,'city': city,'contact': phone},  
-        success: function(dataString) {        
-//            alert("OKKKKK");  
-            console.log('hello:', dataString); 
-                if(dataString.response=="success"){
-                    top.location.href = '/portal';
-                }
-                else{
-                    alert("User Already Registered");
-                }            
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log('errmsg:'+errorThrown.message);
-           alert('No Internet Connection');
-    }  
-    });
+    $("#dfname").hide();
+    $("#dlname").hide();
+    $("#dpass").hide();
+    $("#dcopass").hide();
+    $("#dcity").hide();
+    $("#dins").hide();
+    $("#dphn").hide();
+    $("#demail").hide();
+    
+    if(x=="" || x==" " || !x.match(letters))
+    {
+    $("#dfname").show();
     return false;
+    }
+    if(y=="" || y==" " || !y.match(letters))
+    {
+    $("#dlname").show();
+    return false;
+    }
+    if(pass=="" || pass==" " || pass.length>15 || pass.length<7)
+    {
+    $("#dpass").show();
+    return false;
+    }
+    if(pass!=copass || copass=="" || copass==" ")
+    {
+    $("#dcopass").show();
+    return false;
+    }
+    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)))  
+    {  
+    $("#demail").show(); 
+    return false;
+    }
+    if(phone=="" || phone==" " || phone.length<10 || phone.length>10 || isNaN(phone))
+    {
+    $("#dphn").show();
+    return false;
+    }
+    if(ins=="" || ins==" " || !ins.match(letters))
+    {
+       $("#dins").show(); 
+       return false;
+    }    
+    if(city=="" || city==" " || !city.match(letters))
+    {
+       $("#dcity").show(); 
+       return false;
+    }
+    return true;
 }
 </script>
  <script type="text/javascript" src="js/script.js"></script>
