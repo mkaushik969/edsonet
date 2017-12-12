@@ -57,7 +57,7 @@ router.post('/', function(req, res, next) {
 	  driver.close();
 	})
 	.catch((err) => {
-	console.log("failure");
+	console.log("failure:"+err);
 //		res.status(200).json({"response" : "failure"});
 	res.redirect("/createaccount");
 	})

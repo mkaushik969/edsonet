@@ -41,6 +41,7 @@ var getpostsearchresults = require('./routes/getpostsearchresults');
 var searchresults = require('./routes/searchresults');
 var getinstructions = require('./routes/getinstructions');
 var isfollowing = require('./routes/isfollowing');
+var about = require('./routes/about');
 
 var app = express();
 
@@ -106,6 +107,7 @@ app.use('/searchresults', searchresults);
 app.use('/getinstructions', getinstructions);
 app.use('/jee', jee);
 app.use('/isfollowing', isfollowing);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

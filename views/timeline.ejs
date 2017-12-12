@@ -277,13 +277,11 @@ var myemail = '<%=email %>' ;
 				   {
 				   	element= '<div class="card-post">'+
                     '<div class="row">'+
-                    '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="user-profile.html" title="User Profile">'+
+                    '<div class="col-xs-3 col-sm-2" align="center">'+
                                 '<img src=';
                     if(uimage)
                     {
-                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
                        '<form action="/profile" method="post">'+
@@ -303,8 +301,8 @@ var myemail = '<%=email %>' ;
                     }
                     else
                     {
-                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+                            
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
                     '<form action="/profile" method="post">'+
@@ -330,14 +328,14 @@ var myemail = '<%=email %>' ;
 
 				   	element= '<div class="card-post">'+
                     '<div class="row">'+
-                    '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="user-profile.html" title="User Profile">'+
+                    '<div class="col-xs-3 col-sm-2" align="center">'+
+                            
                                 '<img src=';
 
                         if(uimage)
                         {
-                            element=element+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                            element=element+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+                            
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
                        '<form action="/profile" method="post">'+
@@ -361,8 +359,8 @@ var myemail = '<%=email %>' ;
                         }
                         else
                         {
-            element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+'</div>'+
+            element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+                            '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
                     '<form action="/profile" method="post">'+
                         '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
@@ -584,7 +582,14 @@ function getprofile()
                 if(dataString.response=="success"){
                     obj=dataString.data;
                      var i;
-         for(i=0;i<obj.length;i++)
+                     $("#dfollower").hide();
+                     if(obj.length==0)
+                     {
+                        $("#dfollower").show();
+                     }
+                     else
+                     {
+                        for(i=0;i<obj.length;i++)
          {
             var j=i+1;
             followers.push(obj[i].email);
@@ -605,6 +610,8 @@ function getprofile()
             }
             document.getElementById("name"+j).textContent=obj[i].firstname;
          }
+                     }
+         
                 }
                 else{
                     console.log("Error2");
@@ -632,7 +639,15 @@ function getfollowing()
                 if(dataString.response=="success"){
                     obj1=dataString.data;
                      var i;
-                     for(i=0;i<obj1.length;i++)
+
+                     $("#dfollowing").hide();
+                     if(obj1.length==0)
+                     {
+                        $("#dfollowing").show();
+                     }
+                     else
+                     {
+                        for(i=0;i<obj1.length;i++)
                      {
                         var j=i+1;
                         followings.push(obj1[i].email);
@@ -654,6 +669,8 @@ function getfollowing()
                         }
                         document.getElementById("name"+j+j).textContent=obj1[i].firstname;
                      }
+                     }
+                     
                 }
                 else{
                     console.log("Error3");
@@ -1002,6 +1019,7 @@ function closeNav2() {
                     <div class="col-sm-12">
                         <h3>Followers</h3>
                     </div>
+                    <h5 id="dfollower" align="center">You don't have any followers.</h5>
                     <div class="col-xs-3 popular-img">
                       <a onclick="viewprofile('2','0')" style="cursor: pointer;">
                         <div id="image1"></div><br>
@@ -1057,6 +1075,7 @@ function closeNav2() {
                  <div class="col-sm-12">
                      <h3>Following</h3>
                  </div>
+                 <h5 id="dfollowing" align="center">You don't follow anyone.</h5>
                     <div class="col-xs-3 popular-img">
                    <a onclick="viewprofile('3','0')" style="cursor: pointer;">
                      <div id="image11"></div><br>

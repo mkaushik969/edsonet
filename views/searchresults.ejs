@@ -16,7 +16,24 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+ <style>
+   
+   input[type=text] {
 
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/img/search.png');
+    background-repeat: repeat-y;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 3px 20px 3px 40px;
+   
+}
+    </style>
 	<script type="text/javascript">
 
     var query = '<%=txt %>' ;
@@ -50,26 +67,33 @@ function getuser()
 				   email=obj[i].email;
 				   uimage=obj[i].image;
                    ucity=obj[i].city;
-				   	element= '<div class="card-post">'+
+				   
+                   	element= '<div class="card-post">'+
                     '<div class="row">'+
-                    '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="#">'+
+                    '<div class="col-xs-3 col-sm-2" align="center">'+
                                 '<img src=';
                     if(uimage)
                     {
                         element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+ '</div>'+
+                            '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#" >'+pfname+' ' +plname+'</a></h3>'+
+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<h4><b>'+ucity+'</b></h4>'+
                     '</div>'+  '</div><br>'+   '</div>';
                     }
                     else
                     {
                         element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+   '</div>'+
+                            '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="" >'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<h4><b>'+ucity+'</b></h4>'+
                     '</div>'+  '</div><br>'+     '</div>';
                     }
@@ -116,21 +140,23 @@ function getposts()
                    cdate=obj[i].post.cdate;
                    type=obj[i].post.type;
                    uimage=obj[i].user.image;
+                   cdate=new Date(Number(cdate)).toString().substr(3,12);
 
                    if(type==1)
                    {
                     element= '<div class="card-post">'+
                     '<div class="row">'+
-                    '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="#" >'+
+                    '<div class="col-xs-3 col-sm-2" align="center">'+
                                 '<img src=';
                     if(uimage)
                     {
-                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+ uimage+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                       '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div><br>'+
@@ -144,11 +170,14 @@ function getposts()
                     }
                     else
                     {
-                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+
+                        element=element+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+                            
                     '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+' ' +plname+'</a></h3>'+
+                        '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div><br>'+
@@ -171,16 +200,19 @@ function getposts()
                    {
                     element1= '<div class="card-post">'+
                     '<div class="row">'+
-                    '<div class="col-xs-3 col-sm-2">'+
-                            '<a href="#">'+
+                    '<div class="col-xs-3 col-sm-2" align="center">'+
+                            
                                 '<img src=';
 
                         if(uimage)
                         {
-                            element1=element1+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+
-                            '</a>'+'</div>'+
+                            element1=element1+'"'+uimage+'"  alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+                            '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#" >'+pfname+'</a></h3>'+
+                        '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+'</div>'+ '<div class="row">'+
                     '<div class=" col-sm-8 col-sm-offset-2 data-post">'+
@@ -191,9 +223,13 @@ function getposts()
                         }
                         else
                         {
-            element1=element1+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:5px;">'+   '</a>'+'</div>'+
+            element1=element1+'"img/user.jpg"'+' alt="User name" class="img-circle img-user" style="height:50px;width:25px;">'+
+            '</div>'+
                     '<div class="col-xs-9 col-sm-10 info-user">'+
-                        '<h3><a href="#">'+pfname+'</a></h3>'+
+                        '<form action="/profile" method="post">'+
+                        '<input type="submit" value="'+pfname+' ' +plname+'" name="name" style="border:none;background-color:white;font-size:15px;font-weight:bold;">'+
+                        '<input type="hidden" value="'+email+'" name="email">'+
+                        '</form>'+
                         '<p><i>'+cdate+'</i></p>'+
                     '</div>'+
                     '</div>'+
@@ -286,65 +322,26 @@ body {
 <body id="wall" onload="getsearch()">
 
     <!--Header with Nav -->
-    <header class="text-right">
-        <form class="text-left search" method="GET">
-            <input name="q" type="text" placeholder="Search..">
-        </form>
-        <div class="menu-icon">
-            <div class="dropdown">
-                <span class="dropdown-toggle" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <span class="hidden-xs hidden-sm">Settings</span> <i class="fa fa-cogs" aria-hidden="true"></i>
-                </span>
-                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownSettings">
-                    <li>
-                        <a href="settings.html" title="Settings" data-toggle="modal" data-target="#settingsmodal">
-                            <div class="col-xs-4">
-                                <i class="fa fa-wrench" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-xs-8 text-left">
-                                <span>Settings</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" title="Settings">
-                            <div class="col-xs-4">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-xs-8 text-left">
-                                <span onclick="logout()">Logout</span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+    <header class="irs-main-header">
+        <div class="irs-header-top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        
+                            <span style="color:white; font-size: 20px;font-family: 'Times New Roman'; float: left;">EDSONET</span>
+                       
+                    </div>
+                    <div class="col-sm-9">
+                    <form class="text-left search" method="POST" action="/searchresults">
+                    <input id="search" name="search" type="text" placeholder="Search..">
+                    </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="second-icon dropdown menu-icon">
-            <span class="dropdown-toggle" role="button" id="dropdownNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span class="hidden-xs hidden-sm">Notifications</span> <i class="fa fa-bell-o" aria-hidden="true"></i> <span class="badge">2</span>
-            </span>
-            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownNotification">
-                <li class="new-not">
-                    <a href="#" title="User name comment"><img src="img/user2.jpg" alt="User name" class="img-circle img-user-mini"> Unread notification</a>
-                </li>
-                <li class="new-not">
-                    <a href="#" title="User name comment"><img src="img/user3.jpg" alt="User name" class="img-circle img-user-mini"> Unread notification</a>
-                </li>
-                <li>
-                    <a href="#" title="User name comment"><img src="img/user4.jpg" alt="User name" class="img-circle img-user-mini"> Read notification</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#" title="All notifications">All Notifications</a></li>
-            </ul>
-        </div>
-        <div class="second-icon menu-icon">
-            <span><a href="personal-profile.html" title="Profile"><span class="hidden-xs hidden-sm">Profile</span> <i class="fa fa-user" aria-hidden="true"></i></a>
-            </span>
-        </div>
-        <div class="second-icon menu-icon">
-            <span><a href="wall.html" title="Wall"><span class="hidden-xs hidden-sm">Posts</span> <i class="glyphicon glyphicon-book" aria-hidden="true"></i></a>
-            </span>
-        </div>
+        
+    
+       
     </header>
       
 
