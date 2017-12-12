@@ -25,14 +25,14 @@ router.post('/', function(req, res, next) {
 	);
 			
 	resultPromise.then(result => {
-	  session.close();
+//	  session.close();
 
 	  const singleRecord = result.records[0];
 	  const node = singleRecord.get(0);
 	  console.log("success:"+singleRecord);		
 	  correct=correct+1;
 	  console.log('correct:'+correct);
-	  driver.close();
+//	  driver.close();
       callback();
 	})
 	.catch((err) => {
@@ -74,7 +74,6 @@ router.post('/', function(req, res, next) {
 	  const singleRecord = result.records[0];
 	  const node = singleRecord.get(0);
    res.status(200).json({"response" :"success","correct":String(correct),"incorrect":String(incorrect)});
-
 	  driver.close();
 	})
 	.catch((err) => {
