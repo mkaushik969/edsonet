@@ -191,9 +191,9 @@
     form.submit();
   }
 
-    function getq(x)
+    function getq(x,y,z)
     {
-        makepostrequest("/practice",{tagid:x},"post");
+        makepostrequest("/practice",{class:x,course:y,tagid:z},"post");
     }
 
 function chkans(x,y)
@@ -303,15 +303,15 @@ function chkans(x,y)
                         <div class="irs-categories">
                             <h3 class="irs-sidebar-title">Categories</h3>
                             <ul>
-							                  <li onclick='getq("1")'><i class="fa fa-check" aria-hidden="true"></i>Computer Networks</li>
-                                <li onclick='getq("2")'><i class="fa fa-check" aria-hidden="true"></i>Data Structures</li>
-                                <li onclick='getq("3")'><i class="fa fa-check" aria-hidden="true"></i>Maths</li>
-                                <li onclick='getq("4")'><i class="fa fa-check" aria-hidden="true"></i>Computer Organization & Architecture</li>
-                                <li onclick='getq("5")'><i class="fa fa-check" aria-hidden="true"></i>Operating Systems</li>
-                                <li onclick='getq("6")'><i class="fa fa-check" aria-hidden="true"></i>Database Systems</li>
-                                <li onclick='getq("7")'><i class="fa fa-check" aria-hidden="true"></i>Programming</li>
-                                <li onclick='getq("8")'><i class="fa fa-check" aria-hidden="true"></i>Compiler Design</li>
-                                <li onclick='getq("9")'><i class="fa fa-check" aria-hidden="true"></i>General English And Aptitude</li>
+							                  <li onclick='getq("1","1","1")'><i class="fa fa-check" aria-hidden="true"></i>Computer Networks</li>
+                                <li onclick='getq("1","1","2")'><i class="fa fa-check" aria-hidden="true"></i>Data Structures</li>
+                                <li onclick='getq("1","1","3")'><i class="fa fa-check" aria-hidden="true"></i>Maths</li>
+                                <li onclick='getq("1","1","4")'><i class="fa fa-check" aria-hidden="true"></i>Computer Organization & Architecture</li>
+                                <li onclick='getq("1","1","5")'><i class="fa fa-check" aria-hidden="true"></i>Operating Systems</li>
+                                <li onclick='getq("1","1","6")'><i class="fa fa-check" aria-hidden="true"></i>Database Systems</li>
+                                <li onclick='getq("1","1","7")'><i class="fa fa-check" aria-hidden="true"></i>Programming</li>
+                                <li onclick='getq("1","1","8")'><i class="fa fa-check" aria-hidden="true"></i>Compiler Design</li>
+                                <li onclick='getq("1","1","9")'><i class="fa fa-check" aria-hidden="true"></i>General English And Aptitude</li>
                             </ul>
                         </div>
                         <div class="irs-video">
