@@ -23,9 +23,9 @@ router.post('/', function(req, res, next) {
 	  {
 	  	tid: 't'+String(n),
 	  	email: req.session.email,
-	  	tag: tg,
-	  	course: course,
-	  	clss: req.body.clss,
+	  	tag: String(subject),
+	  	course: String(course),
+	  	clss: String(req.body.clss),
 	  	level: req.body.level,
 	  	timer: req.body.timer
 	  }
