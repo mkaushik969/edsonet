@@ -60,7 +60,7 @@
             console.log('hello:', dataString); 
           if(dataString.response=="success"){
           var myObj;
-          ttlpage=dataString.total;
+          ttlpage=parseInt(dataString.total);
           myObj = dataString.data;
           obj1=myObj;
           //alert(obj1);
