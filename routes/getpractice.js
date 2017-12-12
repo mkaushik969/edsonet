@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 	const session = driver.session();
 
 	const resultPromise = session.run(
-		'MATCH (q:Question{tag:$tag}) RETURN q',
+		'MATCH (q:Question{tag:$tagid}) RETURN q',
 	  {
 	  	 tag: req.body.tagid
 	  	// password: req.body.pass,
