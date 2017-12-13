@@ -29,9 +29,9 @@ router.post('/', function(req, res, next) {
     		monthly.push(result.records[i]._fields);
     	}
 
-	const resultPromise1 = session.run(
-		'MATCH (s:Submission)<-[:SUBMITS]-(u:User{email:$email}) '+
-		'MATCH (t:Tag) where t.tagid=s.tagid return s.tagid,t.name,count(s.tid)',
+	const resultPromise1 = session.run('MATCH (s:Submission)<-[:SUBMITS]-(u:User{email:$email}) '+
+		'MATCH(test:Test) where test.tid=s.tid '+
+		'MATCH (cl:Class)-[:HAS_COURSE]->(co:Course)-[:HAS_SUBJECT]->(t:Tag) where cl.cid=test.class and co.cid=test.course and test.tag=t.tagid return s.tagid,t.name,count(s.tid)',
 	  {
 	  	email: req.body.email,
 	  }
