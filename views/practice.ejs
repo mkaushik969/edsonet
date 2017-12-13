@@ -85,8 +85,7 @@
           if(myObj[i].opt1)
           {
             document.getElementById("opt"+j+"1").innerHTML = myObj[i].opt1;
-          }
-          else
+          if(myObj[i].opt1image)
           {
             var img1=new Image();
               img1.src=myObj[i].opt1image;
@@ -94,12 +93,13 @@
               //img1.setAttribute("alt","effy1");
               document.getElementById("img-container"+j+"1").appendChild(img1);
           }
-          
+          }
+
+
           if(myObj[i].opt2)
           {
             document.getElementById("opt"+j+"2").innerHTML = myObj[i].opt2;
-          }
-          else
+          if(myObj[i].opt2image)
           {
             var img2=new Image();
           img2.src=myObj[i].opt2image;
@@ -107,12 +107,13 @@
           //img2.setAttribute("alt","effy1");
           document.getElementById("img-container"+j+"2").appendChild(img2);
           }
+        }
+
 
           if(myObj[i].opt3)
           {
             document.getElementById("opt"+j+"3").innerHTML = myObj[i].opt3;
-          }
-          else
+          if(myObj[i].opt3image)
           {
                 var img3=new Image();
           img3.src=myObj[i].opt3image;
@@ -120,12 +121,12 @@
           //img3.setAttribute("alt","effy1");
           document.getElementById("img-container"+j+"3").appendChild(img3);
           }
+        }
 
           if(myObj[i].opt4)
           {      
            document.getElementById("opt"+j+"4").innerHTML = myObj[i].opt4;
-          }
-          else
+          if(myObj[i].opt4image)
             {   
              var img4=new Image();
           img4.src=myObj[i].opt4image;
@@ -133,6 +134,7 @@
           //img4.setAttribute("alt","effy1");
           document.getElementById("img-container"+j+"4").appendChild(img4);
           }
+        }
 
           }
            if(pageno==1)
