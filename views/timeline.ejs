@@ -164,6 +164,9 @@ var myemail = '<%=email %>' ;
                    var obj1=dataString.sub;
                    var cn=0,db=0,os=0,coa=0,mat=0,ds=0,pro=0,com=0,ea=0;
                    var i;
+
+                   alert(obj1[0][1]);
+                   alert(obj1[0][2].low);
                    for(i=0;i<obj1.length;i++)
                    {
                     if(obj1[i][1]==1)
@@ -203,7 +206,6 @@ var myemail = '<%=email %>' ;
                         ea=obj1[i][2].low;
                     }
                    }
-
 
                     var data = google.visualization.arrayToDataTable([
           ['Subject', 'Attempted Questions'],
