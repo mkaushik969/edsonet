@@ -71,13 +71,16 @@
           if(myObj[i].ques)
           {
           document.getElementById("ques"+j).innerHTML = myObj[i].ques;
-          
+          if(myObj[i].qimage)
+          {
             var img = new Image();
+          
           img.src = myObj[i].qimage;
           img.setAttribute("class", "banner-img");
           //img.setAttribute("alt", "effy");
           document.getElementById("img-container1").appendChild(img);
           }
+        }
 
           if(myObj[i].opt1)
           {
