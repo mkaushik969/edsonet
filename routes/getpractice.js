@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
 		    jsonArr.data.push(result.records[i].get(0).properties);
 		}
 
-		var ttl=floor(result.records.length/10);
+		var ttl=Math.floor((result.records.length/10));
 //	   const node = singleRecord.get(0);
 //	 log.console(singleRecord);
 //	 log.console(node);
